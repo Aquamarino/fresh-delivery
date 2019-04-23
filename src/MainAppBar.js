@@ -170,20 +170,9 @@ class MainAppBar extends React.Component {
               <LocalShippingIcon fontSize="large"/>
             </IconButton>
             <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-              Material-UI
+              鲜果篮子
             </Typography>
-            <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <SearchIcon />
-              </div>
-              <InputBase
-                placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-              />
-            </div>
+
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
               <IconButton color="inherit">
