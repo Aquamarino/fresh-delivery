@@ -53,37 +53,37 @@ class NavMerchant extends Component {
           管理
         </Typography>
       <List component="nav">
-    <Link to="/m/orders" >
-        <ListItem button>
+
+        <ListItem button component={Link} to="/m/orders">
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
           <ListItemText primary="订单管理" />
         </ListItem>
-</Link>
-<Link to="/m/create">
-        <ListItem button>
+
+
+        <ListItem button component={Link} to="/m/create">
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
           <ListItemText primary="商品上架" />
         </ListItem>
-        </Link>
-        <Link to="/m/inventory">
-        <ListItem button>
+
+
+        <ListItem button component={Link} to="/m/inventory">
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
           <ListItemText primary="库存管理" />
         </ListItem>
-        </Link>
-        <Link to="/m/customers">
-        <ListItem button>
+
+
+        <ListItem button component={Link} to="/m/customers">
           <ListItemIcon>
             <DraftsIcon />
           </ListItemIcon>
-          <ListItemText primary="用户管理" />
-        </ListItem></Link>
+          <ListItemText primary="用户管理"/>
+        </ListItem>
       </List>
       <Divider />
       <br/>
@@ -91,20 +91,20 @@ class NavMerchant extends Component {
           分析
         </Typography>
       <List component="nav">
-      <Link to="/m/analyse-sales">
-        <ListItem button>
+
+        <ListItem button component={Link} to="/m/analyse-sales">
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
           <ListItemText primary="营业分析" />
-        </ListItem></Link>
-        <Link to="/m/analyse-commodity">
-        <ListItem button>
+        </ListItem>
+
+        <ListItem button  component={Link} to="/m/analyse-commodity">
           <ListItemIcon>
             <DraftsIcon />
           </ListItemIcon>
           <ListItemText primary="商品分析" />
-        </ListItem></Link>
+        </ListItem>
       </List>
       <Divider />
       <br/>
