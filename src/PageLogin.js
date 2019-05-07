@@ -54,6 +54,9 @@ const styles = {
         width:"100%",
         overflow:"hidden",
         
+    },
+    pd1:{
+        padding:'2rem'
     }
 };
 
@@ -84,20 +87,33 @@ class PageLogin extends React.Component {
       [name]: event.target.value,
     });
   };
+
+  handleCommit = name => event =>{
+      console.log(name);
+      window.location.href='/'+this.props.buttonName.substring(0,1);
+  }
+
   render() {
     const { classes, buttonName } = this.props;
 
-    const loginField  = <div>
+    const loginField  = <div className={classes.pd1}>
         <TextField onChange={this.handleText('username') } label="用户名"/>
-        <br/>
         <br/>
         <TextField onChange={this.handleText('password') } label="密码" type="password"/>
         <br></br>
         <br/>
-        <Button onClick={()=>{;}}>{this.state.value=="login"?'登录':'注册'}</Button>
+        <Button onClick={this.handleCommit(this.state.value)} variant="contained">{this.state.value=="login"?'登录':'注册'}</Button>
         </div>;
 
-    const signupField = <div></div>;
+    const signupField = <div className={classes.pd1}>
+    <TextField onChange={this.handleText('username') } label="用户名"/>
+    <br/>
+    <TextField onChange={this.handleText('password') } label="密码" type="password"/>
+    <br></br>
+    <TextField onChange={this.handleText('password1') } label="确认密码" type="password"/>
+    <br/><br/>
+    <Button onClick={this.handleCommit(this.state.value)} variant="contained">{this.state.value=="login"?'登录':'注册'}</Button>
+    </div>;
     
     const LoginLayout = <div className={classes.background}>
         <img className={classes.background} src='https://images.unsplash.com/photo-1546548970-71785318a17b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1834&q=80'></img>
@@ -114,7 +130,7 @@ class PageLogin extends React.Component {
           <Tab label="登录" value="login"/>
           <Tab label="注册" value="signup"/>
         </Tabs>
-        {this.state.value=="login"?loginField:'signupField'}
+        {this.state.value=="login"?loginField:signupField}
         </Card>
         </div>
         
