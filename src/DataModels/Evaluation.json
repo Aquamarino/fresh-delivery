@@ -1,0 +1,14 @@
+[
+    {
+        "id": 123456,
+        "customer_id": 123456,
+        "commodity_id": 12345,
+        "rate": 5
+    },
+    {
+        "id": 654321,
+        "customer_id": 654321,
+        "commodity_id": 12346,
+        "rate": 4
+    }
+]

@@ -1,0 +1,16 @@
+[
+    {
+        "id": 234567,
+        "username": "Tim",
+        "name": "merchant name",
+        "shop_address": "xxx city xxx street",
+        "phone": "12345678910"
+    },
+    {
+        "id": 765432,
+        "username": "Jam",
+        "name": "another merchant name",
+        "shop_address": "yyy city yyy street",
+        "phone": "10987654321"
+    }
+]

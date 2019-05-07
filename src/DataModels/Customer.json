@@ -1,0 +1,18 @@
+[
+    {
+        "id": 123456,
+        "username": "John",
+        "nickname": "Jimmy",
+        "head": "./",
+        "vip": 0,
+        "phone": "13918915900" 
+    },
+    {
+        "id": 654321,
+        "username": "Ben",
+        "nickname": "Benny",
+        "head": "./",
+        "vip": 1,
+        "phone": "18915913900"
+    }
+]

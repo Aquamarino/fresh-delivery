@@ -1,0 +1,16 @@
+[
+    {
+        "id": 123456,
+        "order_id": 123456,
+        "commodity_id": 12345,
+        "quantity": 10,
+        "price": 5.0
+    },
+    {
+        "id": 654321,
+        "order_id": 234567,
+        "commodity_id": 12346,
+        "quantity": 100,
+        "price": 12.5
+    }
+]

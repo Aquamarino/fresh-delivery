@@ -1,0 +1,12 @@
+[
+    {
+        "id": 123456,
+        "customer_id": 123456,
+        "address": "xxx city xxx street"
+    },
+    {
+        "id": 654321,
+        "customer_id": 654321,
+        "address": "yyy city yyy street"
+    }
+]
