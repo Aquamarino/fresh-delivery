@@ -6,21 +6,27 @@ import NavMerchant from './NavMerchant'
 import PageCreateCommodity from './PageCreateCommodity'
 import PageManageCommodity from "./PageAnalyseCommodity"
 import PageManageOrder from "./PageManageOrder"
-
+import PageWelcome from './PageWelcome'
 import PageManageCustomer from './PageManageCustomer'
 import PageAnalyseSales from './PageAnalyseSales'
 import PageManageInventory from './PageManageInventory';
 
 class App extends Component {
   render() {
+    console.log(window.location)
     return (
       <div className="App">
       <Router>
-        <MainAppBar/>
+
         <Switch>
         <Route path="/" exact>
-        <p>Welcome! please choose <Link to="/c">Customer</Link>/ <Link to="/m">Merchant</Link></p>
+        <PageWelcome/>
+
         </Route>
+        <Route path="/">
+        <MainAppBar/>
+        <Switch>
+
         <Route path="/c/">
         <Grid container justify="center" spacing={24}>
         <Grid item xs={2}>
@@ -60,6 +66,8 @@ class App extends Component {
         
         </Grid>
         </Grid>
+        </Route>
+        </Switch>
         </Route>
         </Switch>
         </Router>
