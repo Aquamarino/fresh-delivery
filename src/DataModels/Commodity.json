@@ -7,13 +7,13 @@
         "unit":"g",
         "type": 123,
         "tag": [
-            {"name":"tag1"
-            },
-            {"name":"tag2"
-            }
+            "tag1"
+            ,
+            "tag2"
+
         ],
         "inventory": 9999,
-        "resource": {"pic_url":"", "detail_pic_url":"", "detail":"这将会是你一眼就爱上的苹果。（省略1000字）"
+        "resource": {"pic_url":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec", "detail_pic_url":"", "detail":"这将会是你一眼就爱上的苹果。（省略1000字）"
         }
     },
     {
@@ -28,7 +28,7 @@
             "tag4"
         ],
         "inventory": 9998,
-        "resource": {"pic_url":"", "detail_pic_url":"", "detail":"这将会是你一眼就爱上的香蕉。（省略1000字）"
+        "resource": {"pic_url":"https://images.unsplash.com/reserve/RNm0KceQ4Gbpb0xldOe7_DSC_0679_2.JPG", "detail_pic_url":"", "detail":"这将会是你一眼就爱上的香蕉。（省略1000字）"
         }
     }
 ]

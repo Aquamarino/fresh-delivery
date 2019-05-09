@@ -28,7 +28,10 @@ import ImageUploader from 'react-images-upload';
 import MenuItem from '@material-ui/core/MenuItem';
 
 import Select from '@material-ui/core/Select';
-
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import StarBorderIcon from '@material-ui/icons/StarBorder';
 
 const styles = theme => ({
   paper: {
@@ -79,6 +82,18 @@ const styles = theme => ({
       chip: {
         margin: theme.spacing.unit / 2,
       },
+      gridList: {
+        flexWrap: 'nowrap',
+        // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
+        transform: 'translateZ(0)',
+      },
+      title: {
+        
+      },
+      titleBar: {
+        background:
+          'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+      },
   });
   
 
@@ -95,13 +110,13 @@ const styles = theme => ({
         selectedHistory : null,
         createdData:{
           id:null,
-          name:null,
+          name:"",
           shop_id:null,
-          price:null,
-          unit:null,
-          type:null,
+          price:"",
+          unit:"",
+          type:"",
           tag: ["1", "2"],
-          inventory: null,
+          inventory: "",
           resource: {pic_url:"", detail_pic_url:"", detail:"这将会是你一眼就爱上的香蕉。（省略1000字）"
           },
         },
@@ -115,8 +130,8 @@ const styles = theme => ({
 
   handleImage(pictureFiles, pictureDataURLs) {
 		this.setState({
-            pictures: this.state.pictures.concat(pictureFiles),
-        });
+            pictures: [].concat(pictureFiles),
+        }, ()=>{});
 	}
 
     handleInput(param, event){
@@ -152,13 +167,34 @@ const styles = theme => ({
       const { classes } = this.props;
     switch (step) {
       case 0:
-        return <div><List className={classes.list}>
+        return <div>
+          {/* <List className={classes.list}>
               {Commodity.map(item => (
                 <ListItem key={item.id} button onClick={()=>{this.setState({selectedHistory:item},()=>this.setState({createdData:this.state.selectedHistory}));}}>
                   <ListItemText primary={item.name} />
                 </ListItem>
               ))}
-      </List>
+      </List> */}
+      <br/>
+      <GridList className={classes.gridList} cols={2.5}>
+        {Commodity.map(tile => (
+          <GridListTile key={tile.id}>
+            <img src={tile.resource.pic_url} alt={tile.id} />
+            <GridListTileBar
+              title={tile.name}
+              classes={{
+                root: classes.titleBar,
+                title: classes.title,
+              }}
+              actionIcon={
+                <IconButton  onClick={()=>{this.setState({selectedHistory:tile},()=>this.setState({createdData:this.state.selectedHistory}));}}>
+                  <StarBorderIcon style={{color:"white"}}/>
+                </IconButton>
+              }
+            />
+          </GridListTile>
+        ))}
+      </GridList>
       <br/>     
       <Fab color="secondary" aria-label="Add" disabled={this.state.selectedHistory===null} className={classes.fab} onClick={this.handleSkip}>
         <AddIcon />
@@ -180,7 +216,7 @@ const styles = theme => ({
         <br/>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="age-simple">类型</InputLabel>
-          <Select
+          <Select 
             value={this.state.createdData.type}
             onChange={this.handleSelection}
             inputProps={{
@@ -247,7 +283,7 @@ const styles = theme => ({
         </Typography>
         <List>
           <ListItem>
-            商品ID：{this.state.createdData.id===null?"即将生成新商品ID":this.state.createdData.id}
+            商品ID：{this.state.createdData.id===""?"即将生成新商品ID":this.state.createdData.id}
           {/* price:null,
           unit:null,
           type:null,
@@ -266,7 +302,7 @@ const styles = theme => ({
               label={data}
               className={classes.chip}
             />)})}</ListItem>
-
+        <ListItem> </ListItem>
         </List>
         </Card>
       default:
@@ -310,7 +346,7 @@ const styles = theme => ({
             <Step key={label}>
               <StepLabel>{label}</StepLabel>
               <StepContent>
-                <Typography>{this.getStepContent(index)}</Typography>
+                {this.getStepContent(index)}
                 <div className={classes.actionsContainer}>
                   <div>
                     <Button

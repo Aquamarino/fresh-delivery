@@ -14,6 +14,8 @@ import Divider from '@material-ui/core/Divider';
 import InboxIcon from '@material-ui/icons/Inbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import MovieList from './MovieList'
+import SearchBar from './SearchBar';
+import CardItem from './CardItem';
 
 
 const styles = {
@@ -45,8 +47,9 @@ const styles = {
           <Typography variant="h5" component="h5" >
             订单管理
           </Typography>
-        <MovieList/>
-        
+          <br/>
+        <SearchBar/>
+        <CardItem/>
         </CardContent>
       </Card>
       </div>
