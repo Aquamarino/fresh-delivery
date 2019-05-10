@@ -116,7 +116,7 @@ class PageLogin extends React.Component {
         sessionStorage.setItem("username", username);
         sessionStorage.setItem("iconURL",data.iconURL);
         
-        alert(data.error.message || "login success");
+        alert(data.error.message || "login successful");
       }
         const ltype = this.props.buttonName.substring(2,4)
        window.location.href='/'+(ltype==="顾客"?"c":"m");

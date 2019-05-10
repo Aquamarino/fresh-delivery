@@ -6,7 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 
 import Typography from '@material-ui/core/Typography';
-
+import Button from '@material-ui/core/Button'
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -17,17 +17,23 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 const styles = theme => ({
   card: {
     display: 'flex',
-    marginTop: "2rem",
+    maxHeight: 100,
   },
+
   details: {
     display: 'flex',
-    flexDirection: 'column',
+    // flexDirection: 'column',
   },
   content: {
     flex: '1 0 auto',
   },
+  listItem:{
+    display: 'flex',
+  },
   cover: {
-    width: 151,
+    width: 130,
+    marginTop:1,
+    marginBottom:1,
   },
   controls: {
     display: 'flex',
@@ -42,11 +48,11 @@ const styles = theme => ({
 
   root: {
     width: '100%',
-    
+    marginTop:'2rem',
     backgroundColor: theme.palette.background.paper,
     position: 'relative',
     overflow: 'auto',
-    maxHeight: 300,
+    maxHeight: "1080px",
   },
   listSection: {
     backgroundColor: 'inherit',
@@ -55,6 +61,14 @@ const styles = theme => ({
     backgroundColor: 'inherit',
     padding: 0,
   },
+  optionDiv:{
+    display:"flex",
+    marginLeft:'auto',
+    marginRight:"1rem",
+
+    marginBottom:"1rem",
+    marginTop:"auto",
+  },
 });
 
 function CardItem(props) {
@@ -62,62 +76,30 @@ function CardItem(props) {
 
   return (
     <div>
-    <Card className={classes.card}>
-    <CardMedia
-        className={classes.cover}
-        image="https://images.unsplash.com/photo-1512578659172-63a4634c05ec"
-        title="Live from space album cover"
-      />
-      <div className={classes.details}>
-        <CardContent className={classes.content}>
-          <Typography component="h5" variant="h5">
-            青苹果
-          </Typography>
-          <Typography variant="subtitle1" color="textSecondary">
-            详细描述
-          </Typography>
-        </CardContent>
-        
-      </div>
-        <br/>
-    </Card>
-    <br/>
-    <Card className={classes.card}>
-        <CardMedia
-        className={classes.cover}
-        image="https://images.unsplash.com/photo-1512578659172-63a4634c05ec"
-        title="Live from space album cover"
-      /><div className={classes.details}>
-      <CardContent className={classes.content}>
-        <Typography component="h5" variant="h5">
-          青苹果
-        </Typography>
-        <Typography variant="subtitle1" color="textSecondary">
-          详细描述
-        </Typography>
-      </CardContent>
-      
-    </div> </Card>
+    
     <List className={classes.root} subheader={<li />}>
       {[0, 1, 2, 3, 4].map(sectionId => (
         <li key={`section-${sectionId}`} className={classes.listSection}>
           <ul className={classes.ul}>
             <ListSubheader>{`I'm sticky ${sectionId}`}</ListSubheader>
             {[0, 1, 2].map(item => (
-              <ListItem key={`item-${sectionId}-${item}`} component={Card}>
-              <img
-        className={classes.cover}
-        src="https://images.unsplash.com/photo-1512578659172-63a4634c05ec"
-        title="Live from space album cover"
-      />
-                <Typography component="h5" variant="h5">
-            青苹果
-          </Typography>
-          <br/>
-          <Typography variant="subtitle1" color="textSecondary">
-            详细描述
-          </Typography>
-              </ListItem>
+              <Card className={classes.card} key={item}>
+              <CardMedia
+              className={classes.cover}
+              image="https://images.unsplash.com/photo-1512578659172-63a4634c05ec"
+              title="Live from space album cover"
+            /><div className={classes.details}>
+            <CardContent className={classes.content}>
+              <Typography>
+                青苹果
+              </Typography>
+              <Typography color="textSecondary" style={{fontSize:'smaller'}}>
+                详细描述
+              </Typography>
+            </CardContent>
+            
+          </div>
+          <div className={classes.optionDiv}><Button>Click Me</Button></div> </Card>
             ))}
           </ul>
         </li>
