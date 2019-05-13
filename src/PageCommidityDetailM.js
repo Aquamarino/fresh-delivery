@@ -9,7 +9,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
-import { Card, Tabs,Tab, TextField } from '@material-ui/core';
+import { Card, Tabs,Tab, TextField, CardContent } from '@material-ui/core';
 import { getData, postJSON } from './utils/request';
 
 const styles = {
@@ -22,7 +22,6 @@ const styles = {
   title:
     {
     position:'absolute',
-
     top:200,
     color:'white',
     fontSize:'xx-large',
@@ -40,12 +39,12 @@ const styles = {
     height:500,
     },
     card:{
-        position:'absolute',
-        right:200,
+        marginLeft:'auto',
+        marginRight:'auto',
         padding:'1rem',
         color:'black',
-        width:300,
-        height:400,
+        width:1080,
+        height:"100%",
     },
     background:{
         width:"100%",
@@ -61,12 +60,11 @@ function Transition(props) {
   return <Slide direction="up" {...props} />;
 }
 
-class PageLogin extends React.Component {
+class PageCommodityDetailM extends React.Component {
   state = {
     open: false,
-    value:"login",
-    username:"jack",
-    password:'123456',
+    value:"order",
+    data:null,
   };
 
   handleClickOpen = () => {
@@ -87,80 +85,54 @@ class PageLogin extends React.Component {
     });
   };
 
-  handleCommit = name => event =>{
-    const username = this.state.username;
-    const password = this.state.password;
-    const remember = true;
-    if (username.length === 0 || password.length === 0) {
-      alert("用户名或密码不能为空！");
-      return;
-    }
-    const params = {
-      username,
-      password,
-      remember
-    };
-    postJSON('/login', params).then(data => {
+  handleRequest = () =>{
+    
+    getData('/getcommodity',this.props.itemId).then(data => {
       if (data.error) {
         alert(data.error.message || "login failed");
       } else {
-        // 保存登录信息到sessionStorage
-        localStorage.setItem("userId", data.userId);
-        localStorage.setItem("username", username);
-        localStorage.setItem("iconURL",data.iconURL);
-        sessionStorage.setItem("userId", data.userId);
-        sessionStorage.setItem("username", username);
-        sessionStorage.setItem("iconURL",data.iconURL);
-        
-        alert(data.error.message || "login successful");
+        console.log(data)
+        this.setState({data:data});
       }
-        const ltype = this.props.buttonName.substring(2,4)
-       window.location.href='/'+(ltype==="顾客"?"c":"m");
   })
   }
 
   render() {
     const { classes, buttonName } = this.props;
 
-    const loginField  = <div className={classes.pd1}>
-        <TextField onChange={this.handleText('username') } label="用户名"/>
-        <br/>
-        <TextField onChange={this.handleText('password') } label="密码" type="password"/>
-        <br></br>
-        <br/>
-        <Button onClick={this.handleCommit(this.state.value)} variant="contained">{this.state.value=="login"?'登录':'注册'}</Button>
-        </div>;
+    const orderDetail = <div>
+        <Typography>
+            {`订单号：
+            用户名：
+            用户ID：`}
+            </Typography>
+    </div>
 
-    const signupField = <div className={classes.pd1}>
-    <TextField onChange={this.handleText('username') } label="用户名"/>
-    <br/>
-    <TextField onChange={this.handleText('password') } label="密码" type="password"/>
-    <br></br>
-    <TextField onChange={this.handleText('password1') } label="确认密码" type="password"/>
-    <br/><br/>
-    <Button onClick={this.handleCommit(this.state.value)} variant="contained">{this.state.value=="login"?'登录':'注册'}</Button>
-    </div>;
+    const customerDetail = <div></div>
+
+    const deliveryLayout = <div></div>
     
-    const LoginLayout = <div className={classes.background}>
-        <img className={classes.background} src='https://images.unsplash.com/photo-1546548970-71785318a17b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1834&q=80'></img>
-        <Card className={classes.title}></Card>
-        <div className={classes.content}>
-        <br/>
+    const DetailLayout = <div className={classes.background}>
+        
         <Card className={classes.card}>
         <Tabs
           value={this.state.value}
           indicatorColor="primary"
           textColor="primary"
           onChange={this.handleChange}
+          
         >
-          <Tab label="登录" value="login"/>
-          <Tab label="注册" value="signup"/>
+          <Tab label="订单详情" value="order"/>
+          <Tab label="用户详情" value="customer"/>
+          <Tab label="物流详情" value="delivery"/>
         </Tabs>
-        {this.state.value=="login"?loginField:signupField}
+        <CardContent>
+        {this.state.value=="order"?orderDetail:this.state.value}
+        </CardContent>
         </Card>
         </div>
         
-    </div>
+    
 
 
     return (
@@ -185,16 +157,17 @@ class PageLogin extends React.Component {
               </Button>
             </Toolbar>
           </AppBar>
-          {LoginLayout}
+          {DetailLayout}
+
         </Dialog>
       </div>
     );
   }
 }
 
-PageLogin.propTypes = {
+PageCommodityDetailM.propTypes = {
   classes: PropTypes.object.isRequired,
   buttonName: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(PageLogin);
+export default withStyles(styles)(PageCommodityDetailM);

@@ -11,6 +11,9 @@
         "order_id": 234567,
         "commodity_id": 12346,
         "quantity": 100,
-        "price": 12.5
+        "price": 12.5,
+        "shop_id": 765432,
+        "customer_name": "杰克"
+        
     }
 ]

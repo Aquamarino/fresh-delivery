@@ -19,11 +19,11 @@ import Dialog from '@material-ui/core/Dialog';
 
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-
+import LinearProgress from '@material-ui/core/LinearProgress'
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
-import movieData from './films1.json';
+import fakeCommodity from './DataModels/Commodity.json';
 
 
 const actionsStyles = theme => ({
@@ -35,6 +35,9 @@ const actionsStyles = theme => ({
 });
 
 class TablePaginationActions extends React.Component {
+
+  
+
   handleFirstPageButtonClick = event => {
     this.props.onChangePage(event, 0);
   };
@@ -154,7 +157,7 @@ const Dialogstyles = {
       const { classes } = this.props;
       return (
         <div>
-            <Button variant="contained" color="secondary" onClick={this.handleClickOpen}>
+            <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
           Detail
         </Button>
           <Dialog
@@ -185,15 +188,15 @@ const Dialogstyles = {
         </Typography>
         <br/>
         <Typography >
-          Genres : {this.props.currentMovie.genres.map(genre=>genre+" ")}
+          Genres : 
         </Typography>
         <br/>
         <Typography >
-          Directors : {this.props.currentMovie.directors.map(director=>director.name+" ")}
+          Directors : 
         </Typography>
         <br/>
         <Typography >
-          Ratings : {this.props.currentMovie.rating.average}
+          Ratings : 
         </Typography>
         <br/>
         <Typography >
@@ -201,11 +204,11 @@ const Dialogstyles = {
         </Typography>
         <br/>
         <Typography >
-          Country : {this.props.currentMovie.countries.map(c=>c+' ')}
+          Country : 
         </Typography>
         <br/>
         <Typography >
-          Actors : {this.props.currentMovie.casts.map(cast=>cast.name+" ")}
+          Actors : 
         </Typography>
         <br/>
         <Typography >
@@ -253,15 +256,48 @@ constructor(){
   this.handleSelectMovie = this.handleSelectMovie.bind(this);
 }
 
+ getPage(num){
+  fetch('/getmovies/'+num, {
+    method: "GET",
+    headers: new Headers({
+      "UserId":"admin",
+      "Username":"admin",
+      "Date":'date',
+  })
+  }).then(response => {
+    let jsonData=response.json();
+    return jsonData;
+  }).then(
+    
+    jsons=>{
+      this.state.rows=jsons;
+      this.setState({rows:jsons},()=>this.setState({onquery:false}))
+    }
+  ).catch(err => {
+    console.error(`Request failed. Url = '/getmovies' . Message = ${err}`);
+    this.state.rows=fakeCommodity;
+    this.setState({rows:fakeCommodity},()=>this.setState({onquery:false}))
+    return {error: {message: "Request failed."}};
+  })
+}
+
+
+componentDidMount(){
+  this.getPage(0);
+}
+  
+
   state = {
-    rows: movieData,
+    rows: [],
     page: 0,
     rowsPerPage: 10,
     currentMovie: null,
+    onquery:true,
   };
 
   handleChangePage = (event, page) => {
-    this.setState({ page });
+    this.setState({onquery:true},()=>this.setState({ page },()=>this.getPage(page)))
+    
   };
 
   handleChangeRowsPerPage = event => {
@@ -271,35 +307,35 @@ constructor(){
   handleSelectMovie = (event, row) =>{
     this.setState({currentMovie : event.target})
     console.log(row)
-  }
+  };
 
   render() {
     const { classes } = this.props;
     const { rows, rowsPerPage, page } = this.state;
-    const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
+    const emptyRows = rowsPerPage - Math.min(rowsPerPage, 100000);
 
     return (
-
-      
+      <Paper className={classes.root}>
+      <div>{this.state.onquery?<LinearProgress variant='query'></LinearProgress>:<div/>}</div>
         <div className={classes.tableWrapper}>
           <Table className={classes.table}>
           <TableHead>
           <TableRow>
-            <TableCell>Movie Name</TableCell>
-            <TableCell align="right">Publish Date</TableCell>
-            <TableCell align="right">Country</TableCell>
-            <TableCell align="right">More</TableCell>
+            <TableCell>商品名称</TableCell>
+            <TableCell align="right">单价</TableCell>
+            <TableCell align="right">类型</TableCell>
+            <TableCell align="right">更多</TableCell>
 
           </TableRow>
           </TableHead>
             <TableBody>
-              {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(row => (
-                <TableRow key={row._id} hover={true}>
+              {rows.map(row => (
+                <TableRow key={row.id} hover={true}>
                 
                   <TableCell component="th" scope="row">
-                    {row.title} 
+                    {row.name} 
                   </TableCell>
-                  <TableCell align="right">{row.pubdate}</TableCell>
+                  <TableCell align="right">{row.price}</TableCell>
                   <TableCell align="right" >{row.countries}</TableCell>
                   <TableCell style={{width:"5rem"}}>
                   <MovieDialog currentMovie ={row}/>
@@ -317,7 +353,7 @@ constructor(){
                 <TablePagination
                   rowsPerPageOptions={[10]}
                   colSpan={3}
-                  count={rows.length}
+                  count={1000}
                   rowsPerPage={rowsPerPage}
                   page={page}
                   SelectProps={{
@@ -331,7 +367,7 @@ constructor(){
             </TableFooter>
           </Table>
         </div>
-
+      </Paper>
     );
   }
 }

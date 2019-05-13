@@ -11,13 +11,14 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
+import PageCommidityDetailM from './PageCommidityDetailM';
 
 
 
 const styles = theme => ({
   card: {
     display: 'flex',
-    maxHeight: 100,
+    maxHeight: 90,
   },
 
   details: {
@@ -94,12 +95,16 @@ function CardItem(props) {
                 青苹果
               </Typography>
               <Typography color="textSecondary" style={{fontSize:'smaller'}}>
-                详细描述
+                详细描述详细描述详细描述详细描述详细描述详细描述
               </Typography>
+              <Typography color="textSecondary" style={{fontSize:'smaller'}}>
+                详细描述详细描述详细描述详细描述详细描述详细描述
+              </Typography>
+
             </CardContent>
             
           </div>
-          <div className={classes.optionDiv}><Button>Click Me</Button></div> </Card>
+          <div className={classes.optionDiv}><PageCommidityDetailM buttonName='详情'/></div> </Card>
             ))}
           </ul>
         </li>
