@@ -14,8 +14,11 @@ import Divider from '@material-ui/core/Divider';
 import InboxIcon from '@material-ui/icons/Inbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import {Link, Redirect} from "react-router-dom";
+import ExpandLess from '@material-ui/icons/ExpandLess';
+import ExpandMore from '@material-ui/icons/ExpandMore';
+import Collapse from '@material-ui/core/Collapse';
 
-const styles = {
+const styles = theme => ({
   card: {
     minWidth: "5rem",
   },
@@ -30,7 +33,11 @@ const styles = {
   pos: {
     marginBottom: 12,
   },
-};
+
+  nested: {
+    paddingLeft: theme.spacing.unit * 4,
+  },
+});
 
 class NavMerchant extends Component {
   constructor(){
@@ -40,10 +47,15 @@ class NavMerchant extends Component {
     redirect:null,
   }
 
+  handleClick = () => {
+    this.setState(state => ({ open: true }));
+  };
+
 
 
   render(){
     const { classes } = this.props;
+
   return (
     <div>
       <br/>
@@ -76,8 +88,7 @@ class NavMerchant extends Component {
           </ListItemIcon>
           <ListItemText primary="库存管理" />
         </ListItem>
-
-
+ 
         <ListItem button component={Link} to="/m/customers">
           <ListItemIcon>
             <DraftsIcon />
@@ -99,12 +110,36 @@ class NavMerchant extends Component {
           <ListItemText primary="营业分析" />
         </ListItem>
 
-        <ListItem button  component={Link} to="/m/analyse-commodity">
+        <ListItem button onClick={this.handleClick} component={Link} to="/m/analyse-commodity">
+          <ListItemIcon>
+            <InboxIcon />
+          </ListItemIcon>
+          <ListItemText inset primary="商品分析" />
+          {/* {this.state.open ? <ExpandLess /> : <ExpandMore />} */}
+        </ListItem>
+        <Collapse in={this.state.open} timeout="auto" unmountOnExit>
+          <List component="div" disablePadding>
+            <ListItem button className={classes.nested} component={Link} to="/m/analyse-commodity">
+              <ListItemIcon>
+              <DraftsIcon />
+              </ListItemIcon>
+              <ListItemText inset primary="概览" />
+            </ListItem>
+            <ListItem button className={classes.nested} component={Link} to="/m/analyse-commodity">
+              <ListItemIcon>
+              <DraftsIcon />
+              </ListItemIcon>
+              <ListItemText inset primary="分类" />
+            </ListItem>
+          </List>
+        </Collapse>
+
+        {/* <ListItem button  component={Link} to="/m/analyse-commodity">
           <ListItemIcon>
             <DraftsIcon />
           </ListItemIcon>
           <ListItemText primary="商品分析" />
-        </ListItem>
+        </ListItem> */}
       </List>
       <Divider />
       <br/>

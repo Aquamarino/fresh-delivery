@@ -13,6 +13,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import InboxIcon from '@material-ui/icons/Inbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
+import SalesChart from './CommodityChart2';
 
 const styles = {
     card: {
@@ -47,6 +48,14 @@ const styles = {
         
         </CardContent>
       </Card>
+      <br/>
+      水果销售数——过去一周
+      <Card className={classes.card}>
+        <CardContent>
+          <SalesChart/>
+        </CardContent>
+      </Card>
+      <br/>
       </div>
     );
       }
