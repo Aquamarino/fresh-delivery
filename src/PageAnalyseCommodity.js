@@ -11,8 +11,15 @@ import CommodityChart from "./CommodityChart";
 import CardItem from './CardItem';
 import Divider from '@material-ui/core/Divider';
 
+import MovieList from "./OrderList"
+import CardItem from './CommodityList';
+import fakeInventory from './DataModels/Inventory'
 
 const styles = {
+  palette: {
+    primary: 'blue',
+    secondary: 'pink',
+  },
     card: {
       minWidth: "5rem",
     },
@@ -36,20 +43,18 @@ const styles = {
   
   function PageAnalyseCommodity(props) {
     const { classes } = props;
-    const bull = <span className={classes.bullet}>•</span>;
-    var info = 1;
   
     return (
 
 
       <div>
-        <br/>
+        {/* <br/>
       <Card className={classes.card}>
         <CardContent>
           <Typography variant="h5" component="h5" >
             商品分析
           </Typography>
-
+          <CardItem data={fakeInventory}/>
         </CardContent>
       </Card>
       <br/>
@@ -59,7 +64,7 @@ const styles = {
           <CommodityChart/>
         </CardContent>
       </Card>
-      <br/>
+      <br/> */}
       {/* <Card className={classes.card}>
         <CardContent>
           <CardItem/>
