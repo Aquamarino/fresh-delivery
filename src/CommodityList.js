@@ -104,7 +104,7 @@ function CardItem(props) {
             </CardContent>
             
           </div>
-          <div className={classes.optionDiv}><PageCommidityDetailM buttonName='详情'/></div> </Card>
+          <div className={classes.optionDiv}><PageCommidityDetailM buttonName='商品详情'/></div> </Card>
             ))}
           </ul>
         </li>

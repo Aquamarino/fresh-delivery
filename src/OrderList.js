@@ -14,16 +14,11 @@ import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
-import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
 
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import LinearProgress from '@material-ui/core/LinearProgress'
-import Typography from '@material-ui/core/Typography';
-import CloseIcon from '@material-ui/icons/Close';
-import Slide from '@material-ui/core/Slide';
+
 import fakeCommodity from './DataModels/Commodity.json';
+import MovieDialog from './PageOrderDetail'
 
 
 const actionsStyles = theme => ({
@@ -108,131 +103,6 @@ const TablePaginationActionsWrapped = withStyles(actionsStyles, { withTheme: tru
   TablePaginationActions,
 );
 
-const Dialogstyles = {
-    appBar: {
-      position: 'relative',
-    },
-    flex: {
-      flex: 1,
-    },
-    paper:{
-      marginTop:10,
-      marginLeft:20,
-      marginRight:20,
-      padding:40,
-    }
-  };
-  
-  function Transition(props) {
-    return <Slide direction="up" {...props} />;
-  }
-  
-  class FullScreenDialog extends React.Component {
-    state = {
-      open: false,
-      currentMovie: null
-    };
-  
-    componentDidMount(){
-        this.setState({currentMovie: this.props.currentMovie})
-    }
-
-    componentWillReceiveProps(nextProps){
-        this.setState({currentMovie:nextProps.currentMovie,})
-        if(this.props.currentMovie !== nextProps.currentMovie) this.handleClickOpen();
-    }
-
-    
-
-    handleClickOpen = () => {
-      this.setState({ open: true });
-    };
-  
-    handleClose = () => {
-      this.setState({ open: false });
-    };
-  
-    render() {
-
-      const { classes } = this.props;
-      return (
-        <div>
-            <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
-          Detail
-        </Button>
-          <Dialog
-            fullScreen
-            open={this.state.open}
-            onClose={this.handleClose}
-            TransitionComponent={Transition}
-          >
-         
-            <AppBar className={classes.appBar}>
-              <Toolbar>
-                <IconButton color="inherit" onClick={this.handleClose} aria-label="Close">
-                  <CloseIcon />
-                </IconButton>
-                <Typography variant="h6" color="inherit" className={classes.flex}>
-                  Current Movie ID : {this.props.currentMovie._id}
-
-                </Typography>
-                
-                <Button color="inherit" onClick={this.handleClose}>
-                  Close
-                </Button>
-              </Toolbar>
-            </AppBar>
-            <Paper className={classes.paper} elevation={1}>
-        <Typography variant="h5" component="h3">
-          {this.props.currentMovie.title}
-        </Typography>
-        <br/>
-        <Typography >
-          Genres : 
-        </Typography>
-        <br/>
-        <Typography >
-          Directors : 
-        </Typography>
-        <br/>
-        <Typography >
-          Ratings : 
-        </Typography>
-        <br/>
-        <Typography >
-          Poster : <img src={this.props.currentMovie.poster} alt = {this.props.currentMovie.poster}/>
-        </Typography>
-        <br/>
-        <Typography >
-          Country : 
-        </Typography>
-        <br/>
-        <Typography >
-          Actors : 
-        </Typography>
-        <br/>
-        <Typography >
-          Duration : {this.props.currentMovie.duration}
-        </Typography>
-        <br/>
-        <Typography >
-          Summary : {this.props.currentMovie.summary}
-        </Typography>
-      </Paper>
-          </Dialog>
-        </div>
-      );
-    }
-  }
-  
-  FullScreenDialog.propTypes = {
-    classes: PropTypes.object.isRequired,
-  };
-  
-  const MovieDialog =  withStyles(Dialogstyles, { withTheme: true })(FullScreenDialog);
-
-
-
 
 let counter = 0;
 
@@ -268,7 +138,6 @@ constructor(){
     let jsonData=response.json();
     return jsonData;
   }).then(
-    
     jsons=>{
       this.state.rows=jsons;
       this.setState({rows:jsons},()=>this.setState({onquery:false}))

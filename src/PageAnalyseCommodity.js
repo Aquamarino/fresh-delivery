@@ -7,8 +7,13 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import MovieList from "./OrderList"
+import CardItem from './CommodityList';
 
 const styles = {
+  palette: {
+    primary: 'blue',
+    secondary: 'pink',
+  },
     card: {
       minWidth: "5rem",
     },
@@ -27,7 +32,7 @@ const styles = {
   
   function PageAnalyseCommodity(props) {
     const { classes } = props;
-    const bull = <span className={classes.bullet}>•</span>;
+
   
     return (
       <div>
@@ -37,7 +42,7 @@ const styles = {
           <Typography variant="h5" component="h5" >
             商品分析
           </Typography>
-          <MovieList/>
+          <CardItem/>
         </CardContent>
       </Card>
       </div>

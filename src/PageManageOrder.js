@@ -15,7 +15,8 @@ import InboxIcon from '@material-ui/icons/Inbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import MovieList from './OrderList'
 import SearchBar from './SearchBar';
-import CardItem from './CardItem';
+import CardItem from './CommodityList';
+import OrderList from './OrderList';
 
 
 const styles = {
@@ -49,7 +50,7 @@ const styles = {
           </Typography>
           <br/>
         <SearchBar/>
-        <CardItem/>
+        <OrderList/>
         </CardContent>
       </Card>
       </div>
