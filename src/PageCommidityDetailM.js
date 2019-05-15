@@ -80,6 +80,7 @@ class PageCommodityDetailM extends React.Component {
 
   handleClickOpen = () => {
     this.setState({ open: true });
+    this.handleRequest();
   };
 
   handleClose = () => {
@@ -100,7 +101,7 @@ class PageCommodityDetailM extends React.Component {
     
     getData('/getcommodity',this.props.itemId).then(data => {
       if (data.error) {
-        alert(data.error.message || "login failed");
+        alert(data.error.message || "");
       } else {
         console.log(data)
         this.setState({data:data});
@@ -165,6 +166,10 @@ class PageCommodityDetailM extends React.Component {
     const ratingDetail = <div><Card className={classes.paper} elevation={1}>
     评价
     </Card></div>
+
+    const inventoryDetail = <div><Card className={classes.paper} elevation={1}>
+    库存
+    </Card></div>
     
     const DetailLayout = <div className={classes.background}>
         
@@ -180,12 +185,14 @@ class PageCommodityDetailM extends React.Component {
           <Tab label="订单列表" value="orders"/>
           <Tab label="营业额表" value="sales"/>
           <Tab label="客户评价" value="ratings"/>
+          <Tab label="库存详情" value='inventory'/>
         </Tabs>
         <CardContent>
         {this.state.value=="commodity"?commodityDetail:
         this.state.value=="orders"?orderDetail:
          this.state.value=="sales"?saleDetail:
-            this.state.value=="ratings"?ratingDetail:<div/>
+            this.state.value=="ratings"?ratingDetail:
+            this.state.value=="inventory"?inventoryDetail:<div/>
          }
         </CardContent>
         </Card>
@@ -217,7 +224,6 @@ class PageCommodityDetailM extends React.Component {
             </Toolbar>
           </AppBar>
           {DetailLayout}
-
         </Dialog>
       </div>
     );

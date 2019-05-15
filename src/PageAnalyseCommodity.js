@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import MovieList from "./OrderList"
 import CardItem from './CommodityList';
+import fakeInventory from './DataModels/Inventory'
 
 const styles = {
   palette: {
@@ -42,7 +43,7 @@ const styles = {
           <Typography variant="h5" component="h5" >
             商品分析
           </Typography>
-          <CardItem/>
+          <CardItem data={fakeInventory}/>
         </CardContent>
       </Card>
       </div>

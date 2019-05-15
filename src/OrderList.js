@@ -181,7 +181,7 @@ componentDidMount(){
   render() {
     const { classes } = this.props;
     const { rows, rowsPerPage, page } = this.state;
-    const emptyRows = rowsPerPage - Math.min(rowsPerPage, 100000);
+    const emptyRows = rowsPerPage - Math.min(rowsPerPage, rows.length);
 
     return (
       <Paper className={classes.root}>
@@ -243,6 +243,7 @@ componentDidMount(){
 
 MovieList.propTypes = {
   classes: PropTypes.object.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles)(MovieList);

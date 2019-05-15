@@ -74,37 +74,35 @@ const styles = theme => ({
 
 function CardItem(props) {
   const { classes, theme } = props;
-
+  const { data }= props;
   return (
     <div>
     
     <List className={classes.root} subheader={<li />}>
-      {[0, 1, 2, 3, 4].map(sectionId => (
-        <li key={`section-${sectionId}`} className={classes.listSection}>
+      {data.map(shop => (
+        <li key={`section-${shop.shop_id}`} className={classes.listSection}>
           <ul className={classes.ul}>
-            <ListSubheader>{`I'm sticky ${sectionId}`}</ListSubheader>
-            {[0, 1, 2].map(item => (
+            <ListSubheader>{`${shop.shop_name}`}</ListSubheader>
+            {shop.value.map(item => (
               <Card className={classes.card} key={item}>
               <CardMedia
               className={classes.cover}
-              image="https://images.unsplash.com/photo-1512578659172-63a4634c05ec"
-              title="Live from space album cover"
+              image={item.pic_url}
+              title="漂亮的水果"
             /><div className={classes.details}>
             <CardContent className={classes.content}>
               <Typography>
-                青苹果
+                {item.commodity_name}
               </Typography>
-              <Typography color="textSecondary" style={{fontSize:'smaller'}}>
-                详细描述详细描述详细描述详细描述详细描述详细描述
+              <Typography color="textSecondary" style={{fontSize:'smaller', overflow:'hidden', textOverflow:'ellipsis', width:'40rem'}}>
+              <p >{item.description}</p>
               </Typography>
-              <Typography color="textSecondary" style={{fontSize:'smaller'}}>
-                详细描述详细描述详细描述详细描述详细描述详细描述
-              </Typography>
+
 
             </CardContent>
             
           </div>
-          <div className={classes.optionDiv}><PageCommidityDetailM buttonName='商品详情'/></div> </Card>
+          <div className={classes.optionDiv}><PageCommidityDetailM buttonName={'详情'} itemId={item.commodity_id}/></div> </Card>
             ))}
           </ul>
         </li>
@@ -117,6 +115,7 @@ function CardItem(props) {
 CardItem.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
+  type: PropTypes.string.isRequired,
 };
 
 export default withStyles(styles, { withTheme: true })(CardItem);

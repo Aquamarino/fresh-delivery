@@ -1,0 +1,37 @@
+[{
+    "shop_id": 765432,
+    "shop_name":"商店1",
+    "value":[
+    {
+    "commodity_id": 12346,
+    "pic_url":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec",
+    "description":"商品1详情",
+    "quantity": 100,
+    "price": 12.5,
+    "commodity_name":"abc"
+    },
+    {
+        "commodity_id": 12347,
+        "quantity": 100,
+        "pic_url":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec",
+        "description":"商品2详情",
+        "price": 12.5,
+        "commodity_name":"abc"
+        }
+    ]
+},
+{
+    "shop_id": 765432,
+    "shop_name":"商店2",
+    "value":[
+    {
+    "commodity_id": 12346,
+    "quantity": 100,
+    "pic_url":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec",
+    "description":"商品3详情",
+    "price": 12.5,
+    "commodity_name":"abc"
+    }
+    ]
+}
+]
