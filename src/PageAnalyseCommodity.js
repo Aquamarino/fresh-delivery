@@ -6,9 +6,9 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import MovieList from "./MovieList"
+//import MovieList from "./MovieList"
 import CommodityChart from "./CommodityChart";
-import CardItem from './CardItem';
+//import CardItem from './CardItem';
 import Divider from '@material-ui/core/Divider';
 
 import MovieList from "./OrderList"

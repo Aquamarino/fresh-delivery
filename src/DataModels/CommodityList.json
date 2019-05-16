@@ -1,0 +1,35 @@
+[
+    {
+        "id": 12345,
+        "name":"apple",
+        "shop_id": 996145,
+        "shop_detail":"五角场分店，在复旦大学。。。隔壁的同济大学对面。",
+        "price": 9.9,
+        "unit":"g",
+        "type": 123,
+        "tag": [
+            "tag1"
+            ,
+            "tag2"
+        ],
+        "inventory": 9999,
+        "resource": {"pic_url":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec", "detail_pic_url":"", "detail":"这将会是你一眼就爱上的苹果。（省略1000字）"
+        }
+    },
+    {
+        "id": 12346,
+        "name":"banana",
+        "shop_id": 996146,
+        "shop_detail":"五角场分店，在复旦大学。。。隔壁的同济大学对面。",
+        "price": 10.9,
+        "unit":"g",
+        "type": 122,
+        "tag": [
+            "tag3",
+            "tag4"
+        ],
+        "inventory": 9998,
+        "resource": {"pic_url":"https://images.unsplash.com/reserve/RNm0KceQ4Gbpb0xldOe7_DSC_0679_2.JPG", "detail_pic_url":"", "detail":"这将会是你一眼就爱上的香蕉。（省略1000字）"
+        }
+    }
+]

@@ -19,20 +19,32 @@ import {Tabs,Tab, CardContent, Card}from '@material-ui/core'
 
 
 
-const Dialogstyles = {
+const Dialogstyles = theme =>({
     appBar: {
       position: 'relative',
     },
     flex: {
       flex: 1,
     },
-    paper:{
-      marginTop:10,
-      marginLeft:20,
-      marginRight:20,
-      padding:40,
-    }
-  };
+    background:{
+      width:"100%",
+      overflow:"hidden",
+      
+  },
+    card:{
+      marginLeft:'auto',
+      marginRight:'auto',
+      padding:'1rem',
+      color:'black',
+      width:1080,
+      height:"100%",
+  },
+  paper: {
+    ...theme.mixins.gutters(),
+    paddingTop: theme.spacing.unit * 2,
+    paddingBottom: theme.spacing.unit * 2,
+  },
+  });
   
   function Transition(props) {
     return <Slide direction="up" {...props} />;
@@ -97,7 +109,7 @@ const Dialogstyles = {
       return (
         <div>
             <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
-          Detail
+          详情
         </Button>
           <Dialog
             fullScreen
@@ -121,7 +133,8 @@ const Dialogstyles = {
                 </Button>
               </Toolbar>
             </AppBar>
-            <Paper className={classes.paper} elevation={1}>
+            <div className={classes.background}>
+            <Card className={classes.card}>
             <Tabs
           value={this.state.value}
           indicatorColor="primary"
@@ -141,7 +154,8 @@ const Dialogstyles = {
             this.state.value=="customer"?customerDetail:<div/>
          }
         </CardContent>
-      </Paper>
+      </Card>
+      </div>
           </Dialog>
         </div>
       );

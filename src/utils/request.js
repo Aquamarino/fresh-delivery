@@ -48,7 +48,8 @@ function getData(url, present){
       "X-APICloud-AppId": AppId,
       "X-APICloud-AppKey": secureAppKey,
       "context":present,
-  })
+  }),
+
   }).then(response => {
     return handleResponse(url, response);
   }).catch(err => {

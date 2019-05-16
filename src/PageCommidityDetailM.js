@@ -9,9 +9,12 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
-import { Card, Tabs,Tab, TextField, CardContent, List,ListItem,Chip } from '@material-ui/core';
+import { Card, Tabs,Tab, TextField, CardContent, List,ListItem,Chip, ListItemText } from '@material-ui/core';
 import { getData, postJSON } from './utils/request';
 import fakeCommodity from './DataModels/Commodity.json';
+import OrderList from './OrderList';
+import CommentList from './CommentList'
+import fakeComments from './DataModels/Comments'
 
 
 const styles = theme => ({
@@ -74,8 +77,7 @@ class PageCommodityDetailM extends React.Component {
   state = {
     open: false,
     value:"commodity",
-    data:null,
-    createdData:fakeCommodity[0],
+    CommodityData:fakeCommodity,
   };
 
   handleClickOpen = () => {
@@ -104,67 +106,55 @@ class PageCommodityDetailM extends React.Component {
         alert(data.error.message || "");
       } else {
         console.log(data)
-        this.setState({data:data});
+        this.setState({CommodityData:data});
       }
   })
   }
 
   render() {
     const { classes, buttonName } = this.props;
-    const {createdData} = this.state;
-    const fakeData = fakeCommodity;
+    const {CommodityData} = this.state;
     const commodityDetail = <div>
         <Card className={classes.paper} elevation={1}>
         <Typography variant="h5" component="h2">
-        商品名称：{this.state.createdData.name}
+        商品名称：{CommodityData.name}
         </Typography>
         <List>
           <ListItem>
-            商品ID：{this.state.createdData.id===""?"即将生成新商品ID":this.state.createdData.id}
+            商品ID：{CommodityData.id===""?"即将生成新商品ID":CommodityData.id}
           
           </ListItem>
-          <ListItem>商品价格：{this.state.createdData.price+" 元 / "+this.state.createdData.unit+" "}</ListItem>
-          <ListItem>商品库存：{this.state.createdData.inventory+" "+this.state.createdData.unit+" "}</ListItem>
-          <ListItem>商品描述：{this.state.createdData.resource.detail}</ListItem>
-          <ListItem>商品类型：{this.state.createdData.type===0?"新鲜水果":this.state.createdData.type===1?"水果篮子":this.state.createdData.type===2?"加工水果":""}</ListItem>
-          <ListItem>商品标签：{this.state.createdData.tag.map(data => {
+          <ListItem>商品价格：{CommodityData.price+" 元 / "+CommodityData.unit+" "}</ListItem>
+          <ListItem>所属商店：{CommodityData.shop_detail}</ListItem>
+          <ListItem>商品库存：{CommodityData.inventory+" "+CommodityData.unit+" "}</ListItem>
+          <ListItem>商品描述：{CommodityData.resource.detail}</ListItem>
+          <ListItem>商品类型：{CommodityData.type===0?"新鲜水果":CommodityData.type===1?"水果篮子":CommodityData.type===2?"加工水果":""}</ListItem>
+          <ListItem>商品标签：{CommodityData.tag.map(data => {
           return (
         <Chip
               key={data}
               label={data}
               className={classes.chip}
             />)})}</ListItem>
-        <ListItem> </ListItem>
+        
         </List>
         </Card>
     </div>
 
-    const orderDetail = <div><Card className={classes.paper} elevation={1}>
-    <Typography variant="h5" component="h2">
-    商品名称：{this.state.createdData.name}
-    </Typography>
-    <List>
-      <ListItem>
-        交易1
-      
-      </ListItem>
-      <ListItem>交易2</ListItem>
-      <ListItem>交易3</ListItem>
-      <ListItem>交易4</ListItem>
-      <ListItem>交易5</ListItem>
-      <ListItem>交易6</ListItem>
-    <ListItem>交易7 </ListItem>
-    </List>
-    </Card></div>
+    const orderDetail = <div>
+    <OrderList/>
+</div>
 
     const saleDetail = <div>
       <Card className={classes.paper} elevation={1}>
       营业额
+      
       </Card>
     </div>
 
     const ratingDetail = <div><Card className={classes.paper} elevation={1}>
     评价
+    <CommentList listData={fakeComments}/>
     </Card></div>
 
     const inventoryDetail = <div><Card className={classes.paper} elevation={1}>
