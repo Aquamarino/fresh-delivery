@@ -84,7 +84,7 @@ function CardItem(props) {
           <ul className={classes.ul}>
             <ListSubheader>{`${shop.shop_name}`}</ListSubheader>
             {shop.value.map(item => (
-              <Card className={classes.card} key={item}>
+              <Card className={classes.card} key={item.commodity_id}>
               <CardMedia
               className={classes.cover}
               image={item.pic_url}
@@ -95,7 +95,7 @@ function CardItem(props) {
                 {item.commodity_name}
               </Typography>
               <Typography color="textSecondary" style={{fontSize:'smaller', overflow:'hidden', textOverflow:'ellipsis', width:'40rem'}}>
-              <p >{item.description}</p>
+              {item.description}
               </Typography>
 
 

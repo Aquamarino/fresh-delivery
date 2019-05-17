@@ -17,7 +17,7 @@ import LastPageIcon from '@material-ui/icons/LastPage';
 
 import LinearProgress from '@material-ui/core/LinearProgress'
 
-import fakeCommodity from './DataModels/Commodity.json';
+import fakeOrder from './DataModels/Order.json';
 import MovieDialog from './PageOrderDetail'
 
 
@@ -144,8 +144,8 @@ constructor(){
     }
   ).catch(err => {
     console.error(`Request failed. Url = '/getmovies' . Message = ${err}`);
-    this.state.rows=fakeCommodity;
-    this.setState({rows:fakeCommodity},()=>this.setState({onquery:false}))
+    this.state.rows=fakeOrder;
+    this.setState({rows:fakeOrder},()=>this.setState({onquery:false}))
     return {error: {message: "Request failed."}};
   })
 }

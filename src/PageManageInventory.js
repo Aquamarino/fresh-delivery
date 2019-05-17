@@ -15,6 +15,7 @@ import InboxIcon from '@material-ui/icons/Inbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import CommodityList from './CommodityList'
 import fakeInventory from './DataModels/Inventory.json'
+import {handleRequest,getData }from './utils/request'
 
 const styles = {
     card: {
@@ -34,10 +35,23 @@ const styles = {
   };
   
   class PageManageInventory extends React.Component {
+    handleRequest = () =>{
+      getData('/getcommoditylist',localStorage.getItem('userid')).then(data => {
+        if (data.error) {
+          alert(data.error.message || "");
+        } else {
+          console.log(data)
+          this.setState({CommodityData:data});
+        }
+    })
+    }
+
     render() {
     const { classes } = this.props;
-    const bull = <span className={classes.bullet}>•</span>;
   
+    
+
+
     return (
       <div>
         <br/>
@@ -46,7 +60,7 @@ const styles = {
         <Typography variant="h5" component="h5" >
             库存管理
           </Typography>
-         <CommodityList data={fakeInventory}/>
+         <CommodityList data={fakeInventory} type='inventory'/>
         </CardContent>
       </Card>
       </div>

@@ -21,11 +21,11 @@
     ]
 },
 {
-    "shop_id": 765432,
+    "shop_id": 765433,
     "shop_name":"商店2",
     "value":[
     {
-    "commodity_id": 12346,
+    "commodity_id": 12348,
     "quantity": 100,
     "pic_url":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec",
     "description":"商品3详情",

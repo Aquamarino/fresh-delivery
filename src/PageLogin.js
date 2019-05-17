@@ -105,10 +105,10 @@ class PageLogin extends React.Component {
         alert(data.error.message || "login failed");
       } else {
         // 保存登录信息到sessionStorage
-        localStorage.setItem("userId", data.userId);
+        localStorage.setItem("userid", data.userId);
         localStorage.setItem("username", username);
         localStorage.setItem("iconURL",data.iconURL);
-        sessionStorage.setItem("userId", data.userId);
+        sessionStorage.setItem("userid", data.userId);
         sessionStorage.setItem("username", username);
         sessionStorage.setItem("iconURL",data.iconURL);
         

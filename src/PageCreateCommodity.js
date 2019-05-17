@@ -16,7 +16,7 @@ import StepContent from '@material-ui/core/StepContent';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import Commodity from './DataModels/Commodity.json';
+import Commodity from './DataModels/CommodityList.json';
 import FormControl from '@material-ui/core/FormControl';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Input from '@material-ui/core/Input';
@@ -312,9 +312,15 @@ const styles = theme => ({
       handleNext = () => {
         this.setState(state => ({
           activeStep: state.activeStep + 1,
-        }));
+        }), ()=>{if(this.state.activeStep=== this.getSteps().length - 1)
+          {
+            this.handleSubmit();
+          }
+        });
       };
     
+      handleSubmit = () =>{}
+      
       handleBack = () => {
         this.setState(state => ({
           activeStep: state.activeStep - 1,
@@ -372,9 +378,9 @@ const styles = theme => ({
         </Stepper>
         {activeStep === steps.length && (
           <Paper square elevation={0} className={classes.resetContainer}>
-            <Typography>All steps completed - you&apos;re finished</Typography>
+            <Typography>商品上架已经成功。</Typography>
             <Button onClick={this.handleReset} className={classes.button}>
-              Reset
+              再上架一个
             </Button>
           </Paper>
         )}
