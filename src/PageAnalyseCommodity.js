@@ -6,9 +6,9 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import MovieList from "./MovieList"
+
 import CommodityChart from "./CommodityChart";
-import CardItem from './CardItem';
+
 import Divider from '@material-ui/core/Divider';
 
 import MovieList from "./OrderList"
@@ -48,7 +48,7 @@ const styles = {
 
 
       <div>
-        {/* <br/>
+        <br/>
       <Card className={classes.card}>
         <CardContent>
           <Typography variant="h5" component="h5" >
@@ -57,21 +57,7 @@ const styles = {
           <CardItem data={fakeInventory}/>
         </CardContent>
       </Card>
-      <br/>
-      水果收藏数——过去一周
-      <Card className={classes.card}>
-        <CardContent>
-          <CommodityChart/>
-        </CardContent>
-      </Card>
-      <br/> */}
-      {/* <Card className={classes.card}>
-        <CardContent>
-          <CardItem/>
-        </CardContent>
-      </Card> */}
- 
-      
+
       </div>
       
     );

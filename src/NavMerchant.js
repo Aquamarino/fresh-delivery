@@ -110,12 +110,11 @@ class NavMerchant extends Component {
           <ListItemText primary="营业分析" />
         </ListItem>
 
-        <ListItem button onClick={this.handleClick} component={Link} to="/m/analyse-commodity">
+        {/* <ListItem button onClick={this.handleClick} component={Link} to="/m/analyse-commodity">
           <ListItemIcon>
             <InboxIcon />
           </ListItemIcon>
           <ListItemText inset primary="商品分析" />
-          {/* {this.state.open ? <ExpandLess /> : <ExpandMore />} */}
         </ListItem>
         <Collapse in={this.state.open} timeout="auto" unmountOnExit>
           <List component="div" disablePadding>
@@ -132,14 +131,14 @@ class NavMerchant extends Component {
               <ListItemText inset primary="分类" />
             </ListItem>
           </List>
-        </Collapse>
+        </Collapse> */}
 
-        {/* <ListItem button  component={Link} to="/m/analyse-commodity">
+        <ListItem button  component={Link} to="/m/analyse-commodity">
           <ListItemIcon>
             <DraftsIcon />
           </ListItemIcon>
           <ListItemText primary="商品分析" />
-        </ListItem> */}
+        </ListItem>
       </List>
       <Divider />
       <br/>

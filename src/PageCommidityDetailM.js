@@ -12,6 +12,8 @@ import Slide from '@material-ui/core/Slide';
 import { Card, Tabs,Tab, TextField, CardContent, List,ListItem,Chip } from '@material-ui/core';
 import { getData, postJSON } from './utils/request';
 import fakeCommodity from './DataModels/Commodity.json';
+import SalesChart from "./CommodityChart2";
+import SalesData from "./DataModels/sales.json";
 
 
 const styles = theme => ({
@@ -160,6 +162,13 @@ class PageCommodityDetailM extends React.Component {
     const saleDetail = <div>
       <Card className={classes.paper} elevation={1}>
       营业额
+      </Card>
+      <br/>
+      水果销量——过去一周
+      <Card className={classes.card}>
+        <CardContent>
+          <SalesChart salesdata={SalesData}/>
+        </CardContent>
       </Card>
     </div>
 
