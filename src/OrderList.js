@@ -14,11 +14,11 @@ import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
-
+import fakeOrderList from './DataModels/OrderList.json';
 import LinearProgress from '@material-ui/core/LinearProgress'
+import Typography from '@material-ui/core/Typography'
 
-import fakeOrder from './DataModels/Order.json';
-import MovieDialog from './PageOrderDetail'
+import PageOrderDetail from './PageOrderDetail'
 
 
 const actionsStyles = theme => ({
@@ -51,6 +51,8 @@ class TablePaginationActions extends React.Component {
       Math.max(0, Math.ceil(this.props.count / this.props.rowsPerPage) - 1),
     );
   };
+
+ 
 
   render() {
     const { classes, count, page, rowsPerPage, theme } = this.props;
@@ -144,8 +146,8 @@ constructor(){
     }
   ).catch(err => {
     console.error(`Request failed. Url = '/getmovies' . Message = ${err}`);
-    this.state.rows=fakeOrder;
-    this.setState({rows:fakeOrder},()=>this.setState({onquery:false}))
+    this.state.rows=fakeOrderList;
+    this.setState({rows:fakeOrderList},()=>this.setState({onquery:false}))
     return {error: {message: "Request failed."}};
   })
 }
@@ -157,7 +159,7 @@ componentDidMount(){
   
 
   state = {
-    rows: [],
+    rows:fakeOrderList,
     page: 0,
     rowsPerPage: 10,
     currentMovie: null,
@@ -190,24 +192,26 @@ componentDidMount(){
           <Table className={classes.table}>
           <TableHead>
           <TableRow>
-            <TableCell>商品名称</TableCell>
-            <TableCell align="right">单价</TableCell>
-            <TableCell align="right">类型</TableCell>
+            <TableCell>订单号</TableCell>
+            <TableCell align="right">包含商品</TableCell>
+            <TableCell align="right">所属店面</TableCell>
+            <TableCell align="right">金额</TableCell>
             <TableCell align="right">更多</TableCell>
 
           </TableRow>
           </TableHead>
             <TableBody>
               {rows.map(row => (
-                <TableRow key={row.id} hover={true}>
+                <TableRow key={row.order_id} hover={true}>
                 
                   <TableCell component="th" scope="row">
-                    {row.name} 
+                    {row.order_id} 
                   </TableCell>
-                  <TableCell align="right">{row.price}</TableCell>
-                  <TableCell align="right" >{row.countries}</TableCell>
+                  <TableCell align="right"><span>{row.list[0].commodity_name}</span>{row.list.length>1?<Typography component="span" color="textSecondary" fontSize="smaller">...共{row.list.length}件</Typography>:<div/>}</TableCell>
+                  <TableCell align="right">{row.shop_name}</TableCell>
+                  <TableCell align="right" >{row.total_price+"元"}</TableCell>
                   <TableCell style={{width:"5rem"}}>
-                  <MovieDialog currentMovie ={row}/>
+                  <PageOrderDetail thisOrder ={row}/>
                   </TableCell>
                 </TableRow>
               ))}

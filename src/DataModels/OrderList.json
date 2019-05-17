@@ -1,0 +1,36 @@
+[
+    {
+        "order_id": 234567,
+        "customer_id": 234567,
+        "customer_name":"杰克",
+        "date":"9102年",
+        "shop_id": 765432,
+        "shop_name":"大连路分店",
+        "total_price": 50.0,
+        
+        "note":"要肉不要香菜。",
+        "list":[
+            {
+                
+                "commodity_id": 12346,
+                "commodity_name":"社会主义大菠萝",
+                "commodity_type":"新鲜水果",
+                "quantity":3,
+                "price":4.99,
+                "unit":"斤"
+            },
+            {
+                
+                "commodity_id": 1234326,
+                "commodity_name":"社会主义大菠萝花篮",
+                "commodity_type":"水果篮子",
+                "quantity":1,
+                "price":17.00,
+                "unit":"篮"
+            }
+        ]
+
+        
+        
+    }
+]

@@ -9,6 +9,11 @@
         "id": 234567,
         "state": 2,
         "price": 50.0,
-        "shop_id": 765432
+        "shop_id": 765432,
+        "order_id": 234567,
+        "commodity_id": 12346,
+        "quantity": 100,
+        "customer_name": "杰克"
+        
     }
 ]

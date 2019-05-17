@@ -35,9 +35,9 @@ function CommentList(props) {
     <List className={classes.root}>
       {listData.map(item=>(<ListItem alignItems="flex-start" component={Card} key={item.customer_id}> 
         <ListItemAvatar>
-            <Link to={'/m'}>
-          <Avatar alt="Remy Sharp" src={item.customer_pic_url} />
-          </Link>
+            
+          <Avatar alt="Remy Sharp" src={item.customer_pic_url} component={Link} to={'/m'}/>
+          
         </ListItemAvatar>
         <ListItemText
           primary={<Typography component="span" className={classes.inline} color="textPrimary"  fontSize="smaller">{item.customer_name}</Typography>}

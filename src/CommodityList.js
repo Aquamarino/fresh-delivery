@@ -19,6 +19,7 @@ const styles = theme => ({
   card: {
     display: 'flex',
     maxHeight: 90,
+    minHeight: 90,
   },
 
   details: {
@@ -75,6 +76,7 @@ const styles = theme => ({
 function CardItem(props) {
   const { classes, theme } = props;
   const { data }= props;
+  const {listData} = props;
   return (
     <div>
     

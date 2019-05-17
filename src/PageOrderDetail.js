@@ -16,7 +16,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import {Tabs,Tab, CardContent, Card}from '@material-ui/core'
 
-
+import fakeInventory from './DataModels/Inventory.json'
+import CommodityList from './CommodityList.js';
 
 
 const Dialogstyles = theme =>({
@@ -53,17 +54,15 @@ const Dialogstyles = theme =>({
   class FullScreenDialog extends React.Component {
     state = {
       open: false,
-      currentMovie: null,
+      thisOrder: null,
       value:"order",
     };
   
-    componentDidMount(){
-        this.setState({currentMovie: this.props.currentMovie})
-    }
+
 
     componentWillReceiveProps(nextProps){
-        this.setState({currentMovie:nextProps.currentMovie,})
-        if(this.props.currentMovie !== nextProps.currentMovie) this.handleClickOpen();
+        this.setState({thisOrder:nextProps.thisOrder,})
+        if(this.props.thisOrder !== nextProps.thisOrder) this.handleClickOpen();
     }
 
     handleChange = (event, value) => {
@@ -81,11 +80,19 @@ const Dialogstyles = theme =>({
     render() {
 
       const { classes } = this.props;
+      const {thisOrder} = this.props;
 
       const orderDetail = <div><Card className={classes.paper} elevation={1}>
       <Typography variant="h5" component="h2">
-      商品名称：
+        商品名称：
       </Typography>
+      <Typography variant="h6" component="h6">
+        所属店面：
+      </Typography>
+      <Typography variant="h6" component="h6">
+        商品列表：
+      </Typography>
+      <CommodityList data={fakeInventory}/>
       </Card></div>
       
       const deliveryDetail =<div><Card className={classes.paper} elevation={1}>
@@ -124,7 +131,7 @@ const Dialogstyles = theme =>({
                   <CloseIcon />
                 </IconButton>
                 <Typography variant="h6" color="inherit" className={classes.flex}>
-                  Current Movie ID : {this.props.currentMovie._id}
+                  当前订单 : {thisOrder.order_id}
 
                 </Typography>
                 

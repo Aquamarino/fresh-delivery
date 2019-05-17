@@ -162,3 +162,4 @@ response body =
 2019.05.16
 
 ---
+* 注：commodity_type在数据库保存的是int但是希望后端处理一下，直接返回中文字符串到json body中。
