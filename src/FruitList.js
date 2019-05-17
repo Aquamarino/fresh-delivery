@@ -8,6 +8,10 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import IconButton from '@material-ui/core/IconButton';
 import InfoIcon from '@material-ui/icons/Info';
 import fakeInventory from './DataModels/Inventory.json';
+import Card from '@material-ui/core/Card';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
 
 const styles = theme => ({
   root: {
@@ -24,6 +28,18 @@ const styles = theme => ({
   icon: {
     color: 'rgba(255, 255, 255, 0.54)',
   },
+  card1: {
+    borderTopLeftRadius:20,
+    borderTopRightRadius:20,
+    borderBottomLeftRadius:20,
+    borderBottomRightRadius:20,
+    
+  },
+  media: {
+    // ⚠️ object-fit is not supported by IE 11.
+    objectFit: 'cover',
+  },
+
 });
 
 function FruitList(props) {
@@ -43,9 +59,27 @@ function FruitList(props) {
           <ListSubheader component="div">水果</ListSubheader>
         </GridListTile>
         {tiles.map(tile => (
+          
           <GridListTile key={tile.commodity_id}>
-            <img src={tile.pic_url} alt={tile.commodity_name} />
-            <GridListTileBar
+          <Card className={classes.card}>
+            <CardMedia component="img" alt={tile.commodity_name} image={tile.pic_url} className={classes.media}/>
+
+              {/* <img src={tile.pic_url} alt={tile.commodity_name} />   */}
+
+            {/* <GridListTileBar
+              title={tile.commodity_name}
+              subtitle={<span>price: {tile.price}</span>}
+              actionIcon={
+                <IconButton className={classes.icon}>
+                  <InfoIcon />
+                </IconButton>
+              }
+            /> */}
+            <CardContent>
+              test
+            </CardContent>
+          </Card>
+          <GridListTileBar
               title={tile.commodity_name}
               subtitle={<span>price: {tile.price}</span>}
               actionIcon={
@@ -55,6 +89,7 @@ function FruitList(props) {
               }
             />
           </GridListTile>
+          
         ))}
       </GridList>
     </div>

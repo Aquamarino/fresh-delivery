@@ -71,7 +71,12 @@ const styles = {
     </Card></div>
 
     const inventoryDetail = <div><Card className={classes.paper} elevation={1}>
-    销量日变化——过去一周
+    水果需求量
+      <Card className={classes.card}>
+        <CardContent>
+          <FruitList/>
+        </CardContent>
+      </Card>
     </Card></div>
   
     return (
@@ -97,7 +102,7 @@ const styles = {
           >
             <Tab label="周销量" value="sales"/>
             <Tab label="周利润" value="ratings"/>
-            <Tab label="日销量变化" value='inventory'/>
+            <Tab label="需求" value='inventory'/>
           </Tabs>
           <CardContent>
           {
@@ -108,11 +113,7 @@ const styles = {
           </CardContent>
         </Card>
           
-          {/* <Card className={classes.card}>
-            <CardContent>
-              <FruitList/>
-            </CardContent>
-          </Card> */}
+          
         <br/>
       </div>
     );
