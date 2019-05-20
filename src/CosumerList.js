@@ -13,7 +13,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import PageCommidityDetailM from './PageCommidityDetailM';
-import Avatar from '@material-ui/core/Avatar';;
+import Avatar from '@material-ui/core/Avatar';
+import Chip from '@material-ui/core/Chip';
 
 
 
@@ -79,12 +80,15 @@ const styles = theme => ({
   avatar: {
     backgroundColor: red[500],
   },
+  chip: {
+    margin: theme.spacing.unit,
+  },
 });
 
 function CardItem(props) {
   const { classes, theme } = props;
   const { data }= props;
-  const {listData} = props;
+  const { listData } = props;
   return (
     <div>
     
@@ -105,6 +109,12 @@ function CardItem(props) {
             <CardContent className={classes.content}>
               <Typography>
                 {cusmuer.cusmuer_name}
+
+                {
+                  cusmuer.vip == 1 ?
+                    <Chip label="vip" className={classes.chip} /> : null
+                }
+
               </Typography>
               <Typography color="textSecondary" style={{fontSize:'smaller', overflow:'hidden', textOverflow:'ellipsis', width:'40rem'}}>
               购买次数: {cusmuer.buy_times}

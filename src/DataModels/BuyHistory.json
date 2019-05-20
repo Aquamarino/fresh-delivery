@@ -4,27 +4,31 @@
         "cusmuer_name": "Timmy",
         "buy_times": "10",
         "role": "customer",
-        "avatar": ""
+        "avatar": "",
+        "vip": 1
     },
     {
         "id" : "111112",
         "cusmuer_name": "Jammy",
         "buy_times": "10",
         "role": "customer",
-        "avatar": ""
+        "avatar": "",
+        "vip": 0
     },
     {
         "id" : "111113",
         "cusmuer_name": "John",
         "buy_times": "10",
         "role": "customer",
-        "avatar": ""
+        "avatar": "",
+        "vip": 1
     },
     {
         "id" : "111114",
         "cusmuer_name": "Ben",
         "buy_times": "10",
         "role":"customer",
-        "avatar": ""
+        "avatar": "",
+        "vip": 0
     }
 ]
