@@ -82,15 +82,11 @@ const styles = {
     </Card></div>
 
     const inventoryDetail = <div><Card className={classes.paper} elevation={1}>
-    水果需求量
-      <Card className={classes.card}>
-        <CardContent>
-          {/* <FruitList/> */}
-          <CardItem data={fakeInventory}/>
+    水果需求量</Card>
+    {/* <FruitList/> */}
 
-        </CardContent>
-      </Card>
-    </Card></div>
+      <CardItem data={fakeInventory}/>
+    </div>
   
     return (
       <div>
