@@ -15,6 +15,7 @@
                 "commodity_id": 12346,
                 "commodity_name":"社会主义大菠萝",
                 "commodity_type":"新鲜水果",
+                "commodity_pic":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec",
                 "quantity":3,
                 "price":4.99,
                 "unit":"斤"
@@ -24,6 +25,7 @@
                 "commodity_id": 1234326,
                 "commodity_name":"社会主义大菠萝花篮",
                 "commodity_type":"水果篮子",
+                "commodity_pic":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec",
                 "quantity":1,
                 "price":17.00,
                 "unit":"篮"

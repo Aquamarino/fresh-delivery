@@ -144,7 +144,7 @@ class PageCommodityDetailM extends React.Component {
     </div>
 
     const orderDetail = <div>
-    <OrderList/>
+    <OrderList type="normal"/>
 </div>
 
     const saleDetail = <div>
