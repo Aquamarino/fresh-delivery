@@ -15,11 +15,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import PageCommidityDetailM from './PageCommidityDetailM';
 import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
-import TablePaginationActions from './Pagination';
-
-
-
-
+import Pagination from './Pagination';
 
 const styles = theme => ({
   card: {
@@ -87,64 +83,73 @@ const styles = theme => ({
 });
 
 
-function CardItem(props) {
-  const state = {
+class CardItem extends React.Component {
+  state = {
     page: 0,
     count: 1000,
     rowsPerPage: 10,
-  }
-  const { classes, theme } = props;
-  const { data }= props;
-  const { listData } = props;
-  const onChangePage = (event, page) => {
-    state.page = page;
-
-    console.log(page);
+    data: [],
   };
-  return (
-    <div>
-    
-    <List className={classes.root} subheader={<li />}>
-      {data.map(cusmuer => (
 
-          <ul className={classes.ul}>
+  getPage(num) {
+    this.setState({data: this.props.data});
+  };
 
-              <Card className={classes.card} key={cusmuer.id}>
-              <CardHeader 
-              avatar={
-                <Avatar aria-label="Recipe" className={classes.avatar}>
-                  {cusmuer.cusmuer_name["0"]}
-                </Avatar>
-              }/>
+  componentDidMount() {
+    this.getPage(0);
+  };
 
-            <div className={classes.details}>
-            <CardContent className={classes.content}>
-              <div>
-                {cusmuer.cusmuer_name}
+  onChangePage = (event, page) => {
+    this.setState(()=>this.setState({ page },()=>this.getPage(page)))
+  };
+  render() {
 
-                {
-                  cusmuer.vip == 1 ?
-                    <Chip label="vip" className={classes.chip} /> : null
-                }
+  
+    const { classes, theme } = this.props;
+    const { data }= this.state;
+    const layout = <div>
+      <List className={classes.root} subheader={<li />}>
+        {data.map(cusmuer => (
 
-              </div>
-              <Typography color="textSecondary" style={{fontSize:'smaller', overflow:'hidden', textOverflow:'ellipsis', width:'40rem'}}>
-              购买次数: {cusmuer.buy_times}
-              </Typography>
+            <ul className={classes.ul}>
+
+                <Card className={classes.card} key={cusmuer.id}>
+                <CardHeader 
+                avatar={
+                  <Avatar aria-label="Recipe" className={classes.avatar}>
+                    {cusmuer.cusmuer_name["0"]}
+                  </Avatar>
+                }/>
+
+              <div className={classes.details}>
+              <CardContent className={classes.content}>
+                <div>
+                  {cusmuer.cusmuer_name}
+
+                  {
+                    cusmuer.vip == 1 ?
+                      <Chip label="vip" className={classes.chip} /> : null
+                  }
+
+                </div>
+                <Typography color="textSecondary" style={{fontSize:'smaller', overflow:'hidden', textOverflow:'ellipsis', width:'40rem'}}>
+                购买次数: {cusmuer.buy_times}
+                </Typography>
 
 
-            </CardContent>
-            
-          </div>
-          <div className={classes.optionDiv}><PageCommidityDetailM buttonName={'详情'} cusmuerId={cusmuer.id}/></div> </Card>
+              </CardContent>
+              
+            </div>
+            <div className={classes.optionDiv}><PageCommidityDetailM buttonName={'详情'} cusmuerId={cusmuer.id}/></div> </Card>
 
-          </ul>
+            </ul>
 
-      ))}
-    </List>
-    <TablePaginationActions page={state.page} count={state.count} rowsPerPage={state.rowsPerPage} onChangePage={onChangePage}/>
-    </div>
-  );
+        ))}
+      </List>
+      <Pagination page={this.state.page} count={this.state.count} rowsPerPage={this.state.rowsPerPage} onChangePage={this.onChangePage}/>
+      </div>
+    return layout;
+  }
 }
 
 CardItem.propTypes = {
