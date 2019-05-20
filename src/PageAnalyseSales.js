@@ -19,6 +19,9 @@ import SalesData from "./DataModels/sales.json";
 import fakeCommodity from './DataModels/Commodity.json';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
+import OrderList from './OrderList';
+import CardItem from './CommodityList';
+import fakeInventory from './DataModels/Inventory'
 
 const styles = {
     card: {
@@ -64,6 +67,14 @@ const styles = {
           <SalesChart salesdata={SalesData}/>
         </CardContent>
       </Card>
+      <br/>
+      水果总销量——过去一周
+      <Card className={classes.card}>
+        <CardContent>
+          <OrderList />
+        </CardContent>
+      </Card>
+      
     </div>
 
     const ratingDetail = <div><Card className={classes.paper} elevation={1}>
@@ -74,7 +85,9 @@ const styles = {
     水果需求量
       <Card className={classes.card}>
         <CardContent>
-          <FruitList/>
+          {/* <FruitList/> */}
+          <CardItem data={fakeInventory}/>
+
         </CardContent>
       </Card>
     </Card></div>

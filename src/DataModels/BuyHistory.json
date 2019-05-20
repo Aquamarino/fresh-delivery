@@ -1,0 +1,30 @@
+[
+    {
+        "id" : "111111",
+        "cusmuer_name": "Timmy",
+        "buy_times": "10",
+        "role": "customer",
+        "avatar": ""
+    },
+    {
+        "id" : "111112",
+        "cusmuer_name": "Jammy",
+        "buy_times": "10",
+        "role": "customer",
+        "avatar": ""
+    },
+    {
+        "id" : "111113",
+        "cusmuer_name": "John",
+        "buy_times": "10",
+        "role": "customer",
+        "avatar": ""
+    },
+    {
+        "id" : "111114",
+        "cusmuer_name": "Ben",
+        "buy_times": "10",
+        "role":"customer",
+        "avatar": ""
+    }
+]

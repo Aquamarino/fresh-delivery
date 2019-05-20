@@ -29,16 +29,17 @@ const styles = theme => ({
     color: 'rgba(255, 255, 255, 0.54)',
   },
   card1: {
-    borderTopLeftRadius:20,
-    borderTopRightRadius:20,
-    borderBottomLeftRadius:20,
-    borderBottomRightRadius:20,
+    borderTopLeftRadius:10,
+    borderTopRightRadius:10,
+    borderBottomLeftRadius:10,
+    borderBottomRightRadius:10,
     
   },
-  media: {
-    // ⚠️ object-fit is not supported by IE 11.
-    objectFit: 'cover',
-  },
+  tilebar: {
+    borderBottomLeftRadius:10,
+    borderBottomRightRadius:10,
+  }
+
 
 });
 
@@ -60,9 +61,9 @@ function FruitList(props) {
         </GridListTile>
         {tiles.map(tile => (
           
-          <GridListTile key={tile.commodity_id}>
-          <Card className={classes.card}>
-            <CardMedia component="img" alt={tile.commodity_name} image={tile.pic_url} className={classes.media}/>
+          <GridListTile key={tile.commodity_id} >
+          <Card className={classes.card1}>
+            <CardMedia component="img" alt={tile.commodity_name} image={tile.pic_url} className={classes.card}/>
 
               {/* <img src={tile.pic_url} alt={tile.commodity_name} />   */}
 
@@ -75,11 +76,8 @@ function FruitList(props) {
                 </IconButton>
               }
             /> */}
-            <CardContent>
-              test
-            </CardContent>
           </Card>
-          <GridListTileBar
+          <GridListTileBar className={classes.card1}
               title={tile.commodity_name}
               subtitle={<span>price: {tile.price}</span>}
               actionIcon={

@@ -14,6 +14,8 @@ import Divider from '@material-ui/core/Divider';
 import InboxIcon from '@material-ui/icons/Inbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
 import OrderList from './OrderList';
+import CardItem from './CosumerList';
+import CustomerData from './DataModels/BuyHistory.json';
 
 const styles = {
     card: {
@@ -45,7 +47,9 @@ const styles = {
           <Typography variant="h5" component="h5" >
             顾客管理
           </Typography>
-       <OrderList/>
+          <CardItem data={CustomerData}/>
+
+       {/* <OrderList/> */}
         </CardContent>
       </Card>
       </div>
