@@ -15,6 +15,7 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import PageCommidityDetailM from './PageCommidityDetailM';
 import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
+import TablePaginationActions from './Pagination';
 
 
 
@@ -85,10 +86,21 @@ const styles = theme => ({
   },
 });
 
+
 function CardItem(props) {
+  const state = {
+    page: 0,
+    count: 1000,
+    rowsPerPage: 10,
+  }
   const { classes, theme } = props;
   const { data }= props;
   const { listData } = props;
+  const onChangePage = (event, page) => {
+    state.page = page;
+
+    console.log(page);
+  };
   return (
     <div>
     
@@ -107,7 +119,7 @@ function CardItem(props) {
 
             <div className={classes.details}>
             <CardContent className={classes.content}>
-              <Typography>
+              <div>
                 {cusmuer.cusmuer_name}
 
                 {
@@ -115,7 +127,7 @@ function CardItem(props) {
                     <Chip label="vip" className={classes.chip} /> : null
                 }
 
-              </Typography>
+              </div>
               <Typography color="textSecondary" style={{fontSize:'smaller', overflow:'hidden', textOverflow:'ellipsis', width:'40rem'}}>
               购买次数: {cusmuer.buy_times}
               </Typography>
@@ -130,6 +142,7 @@ function CardItem(props) {
 
       ))}
     </List>
+    <TablePaginationActions page={state.page} count={state.count} rowsPerPage={state.rowsPerPage} onChangePage={onChangePage}/>
     </div>
   );
 }
