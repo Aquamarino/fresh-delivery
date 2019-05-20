@@ -1,0 +1,20 @@
+[
+    {
+        "date":"5/20 7:30 am",
+        "location":"上海",
+        "status":"运输中",
+        "description":"快件已经到达嘉定集散中心。等待派送。"
+    },
+    {
+        "date":"5/19 6:30 pm",
+        "location":"江苏",
+        "status":"运输中",
+        "description":"快件在花桥集散中心装车，等待发往：嘉定集散中心。"
+    },
+    {
+        "date":"5/18 6:30 pm",
+        "location":"江苏",
+        "status":"揽收中",
+        "description":"快件已揽收。"
+    }
+]

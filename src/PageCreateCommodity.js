@@ -224,7 +224,7 @@ const styles = theme => ({
               id: 'age-simple',
             }}
           >
-            <MenuItem value={0}>新鲜水果</MenuItem>
+            <MenuItem value={0}>新鲜水果</MenuItem>
             <MenuItem value={1}>水果篮子</MenuItem>
             <MenuItem value={2}>加工食品</MenuItem>
           </Select>

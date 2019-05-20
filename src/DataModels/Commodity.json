@@ -1,12 +1,12 @@
 
     {
         "id": 12345,
-        "name":"apple",
+        "name":"大苹果",
         "shop_id": 996145,
         "shop_detail":"五角场分店，在复旦大学。。。隔壁的同济大学对面。",
         "price": 9.9,
         "unit":"g",
-        "type": 123,
+        "type": "新鲜水果",
         "tag": [
             "tag1"
             ,

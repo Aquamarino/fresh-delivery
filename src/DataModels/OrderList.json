@@ -3,11 +3,15 @@
         "order_id": 234567,
         "customer_id": 234567,
         "customer_name":"杰克",
+        "status":"已付款",
         "date":"9102年",
         "shop_id": 765432,
         "shop_name":"大连路分店",
         "total_price": 50.0,
-        
+        "pay_method":"蚂蚁花呗",
+        "discount":"满50减10",
+        "delivery":"韵达快递",
+        "delivery_id":"139437284",
         "note":"要肉不要香菜。",
         "list":[
             {

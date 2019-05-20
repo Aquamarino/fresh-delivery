@@ -9,7 +9,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
-import { Card, Tabs,Tab, TextField, CardContent, List,ListItem,Chip, ListItemText } from '@material-ui/core';
+import { Card, Tabs,Tab, TextField, CardContent, List,ListItem,Chip, Grid, Tooltip } from '@material-ui/core';
 import { getData, postJSON } from './utils/request';
 import fakeCommodity from './DataModels/Commodity.json';
 import SalesChart from "./CommodityChart2";
@@ -17,7 +17,9 @@ import SalesData from "./DataModels/sales.json";
 import OrderList from './OrderList';
 import CommentList from './CommentList'
 import fakeComments from './DataModels/Comments'
-
+import Fab from '@material-ui/core/Fab';
+import DeleteIcon from '@material-ui/icons/DeleteForever'
+import AddIcon from '@material-ui/icons/Add';
 
 const styles = theme => ({
   appBar: {
@@ -25,6 +27,15 @@ const styles = theme => ({
   },
   flex: {
     flex: 1,
+  },
+  toolbar:{
+    display:'flex',
+    justifyContent:"center",
+    alignItems:"center",
+    flexDirection:"row"
+  },
+  margin:{
+    margin:"1rem"
   },
   title:
     {
@@ -113,9 +124,13 @@ class PageCommodityDetailM extends React.Component {
   })
   }
 
+  componentDidMount(){
+    if(this.props.tab==="inventory")this.setState({value:"inventory"})
+  }
   render() {
-    const { classes, buttonName } = this.props;
+    const { classes, buttonName} = this.props;
     const {CommodityData} = this.state;
+    
     const commodityDetail = <div>
         <Card className={classes.paper} elevation={1}>
         <Typography variant="h5" component="h2">
@@ -130,7 +145,7 @@ class PageCommodityDetailM extends React.Component {
           <ListItem>所属商店：{CommodityData.shop_detail}</ListItem>
           <ListItem>商品库存：{CommodityData.inventory+" "+CommodityData.unit+" "}</ListItem>
           <ListItem>商品描述：{CommodityData.resource.detail}</ListItem>
-          <ListItem>商品类型：{CommodityData.type===0?"新鲜水果":CommodityData.type===1?"水果篮子":CommodityData.type===2?"加工水果":""}</ListItem>
+          <ListItem>商品类型：{CommodityData.type===0?"新鲜水果":CommodityData.type===1?"水果篮子":CommodityData.type===2?"加工水果":CommodityData.type}</ListItem>
           <ListItem>商品标签：{CommodityData.tag.map(data => {
           return (
         <Chip
@@ -167,7 +182,19 @@ class PageCommodityDetailM extends React.Component {
     </Card></div>
 
     const inventoryDetail = <div><Card className={classes.paper} elevation={1}>
-    库存
+    当前库存：{CommodityData.inventory}
+
+    <Grid className={classes.toolbar}>
+    <Tooltip title="添加库存">
+    <Fab color="secondary" aria-label="Add" className={classes.margin}>
+          <AddIcon  fontSize="large"/>
+        </Fab>
+        </Tooltip>
+        <Tooltip title="下架商品" >
+        <Fab color="secondary" aria-label="Add" className={classes.margin}>
+          <DeleteIcon fontSize="large"/>
+        </Fab></Tooltip>
+        </Grid>
     </Card></div>
     
     const DetailLayout = <div className={classes.background}>

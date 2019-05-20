@@ -210,7 +210,7 @@ componentDidMount(){
                   <TableCell align="right"><span>{row.list[0].commodity_name}</span>{row.list.length>1?<Typography component="span" color="textSecondary" fontSize="smaller">...共{row.list.length}件</Typography>:<div/>}</TableCell>
                   <TableCell align="right">{row.shop_name}</TableCell>
                   <TableCell align="right" >{row.total_price+"元"}</TableCell>
-                  <TableCell style={{width:"5rem"}}>
+                  <TableCell align="right" style={{width:"5rem"}}>
                   <PageOrderDetail thisOrder ={row}/>
                   </TableCell>
                 </TableRow>

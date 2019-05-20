@@ -14,10 +14,16 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
-import {Tabs,Tab, CardContent, Card, CardMedia, List, ListSubheader}from '@material-ui/core'
+import {Tabs,Tab, CardContent, Card, CardMedia, List, LinearProgress}from '@material-ui/core'
 import PageCommidityDetailM from './PageCommidityDetailM'
-import fakeInventory from './DataModels/Inventory.json'
-import CommodityList from './CommodityList.js';
+import fakeDelivery from './DataModels/Deliverylist.json'
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableFooter from '@material-ui/core/TableFooter';
+import TablePagination from '@material-ui/core/TablePagination';
+import TableRow from '@material-ui/core/TableRow';
+import TableHead from '@material-ui/core/TableHead';
 
 
 const Dialogstyles = theme =>({
@@ -123,10 +129,25 @@ const Dialogstyles = theme =>({
         店面ID：{thisOrder.shop_id}
       </Typography>
       <Typography style={{fontSize:"larger"}}>
+        订单状态：{thisOrder.status}
+      </Typography>
+      <Typography style={{fontSize:"larger"}}>
         日期：{thisOrder.date}
       </Typography>
       <Typography style={{fontSize:"larger"}}>
         总价：{thisOrder.total_price}元
+      </Typography>
+      <Typography style={{fontSize:"larger"}}>
+        快递：{thisOrder.delivery}
+      </Typography>
+      <Typography style={{fontSize:"larger"}}>
+        快递单号：{thisOrder.delivery_id}
+      </Typography>
+      <Typography style={{fontSize:"larger"}}>
+        优惠：{thisOrder.discount}
+      </Typography>
+      <Typography style={{fontSize:"larger"}}>
+        支付方式：{thisOrder.pay_method}
       </Typography>
       <Typography style={{fontSize:"larger"}}>
         备注：{thisOrder.note}
@@ -167,16 +188,42 @@ const Dialogstyles = theme =>({
       </Card></div>
       
       const deliveryDetail =<div><Card className={classes.paper} elevation={1}>
-      <Typography variant="h5" component="h2">
-      商品名称：
-      </Typography>
+      
+      <div>{this.state.onquery?<LinearProgress variant='query'></LinearProgress>:<div/>}</div>
+        <div className={classes.tableWrapper}>
+          <Table className={classes.table}>
+          <TableHead>
+          <TableRow>
+            <TableCell>时间</TableCell>
+            <TableCell align="left">状态</TableCell>
+            <TableCell align="left">位置</TableCell>
+            <TableCell align="left">详情</TableCell>
+            
+
+          </TableRow>
+          </TableHead>
+            <TableBody>
+              {fakeDelivery.map(row => (
+                <TableRow key={row.date} hover={true}>
+                
+                  <TableCell component="th" scope="row">
+                    {row.date} 
+                  </TableCell>
+                  <TableCell align="left"><span>{row.status}</span></TableCell>
+                  <TableCell align="left">{row.location}</TableCell>
+                  <TableCell align="left" >{row.description}</TableCell>
+                  
+                </TableRow>
+              ))}
+              
+            </TableBody>
+            
+          </Table>
+        </div>
+     
       </Card></div>
 
-      const paymentDetail = <div><Card className={classes.paper} elevation={1}>
-      <Typography variant="h5" component="h2">
-      商品名称：
-      </Typography>
-      </Card></div>
+      
 
       const customerDetail = <div><Card className={classes.paper} elevation={1}>
       <Typography variant="h5" component="h2">
@@ -222,13 +269,13 @@ const Dialogstyles = theme =>({
         >
           <Tab label="订单详情" value="order"/>
           <Tab label="物流详情" value="delivery"/>
-          <Tab label="付款详情" value="payment"/>
+          
           <Tab label="客户详情" value="customer"/>
         </Tabs>
         <CardContent>
         {this.state.value=="order"?orderDetail:
         this.state.value=="delivery"?deliveryDetail:
-         this.state.value=="payment"?paymentDetail:
+         
             this.state.value=="customer"?customerDetail:<div/>
          }
         </CardContent>
