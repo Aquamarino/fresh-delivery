@@ -14,8 +14,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
-import {Tabs,Tab, CardContent, Card}from '@material-ui/core'
-
+import {Tabs,Tab, CardContent, Card, CardMedia, List, ListSubheader}from '@material-ui/core'
+import PageCommidityDetailM from './PageCommidityDetailM'
 import fakeInventory from './DataModels/Inventory.json'
 import CommodityList from './CommodityList.js';
 
@@ -32,18 +32,45 @@ const Dialogstyles = theme =>({
       overflow:"hidden",
       
   },
-    card:{
-      marginLeft:'auto',
-      marginRight:'auto',
-      padding:'1rem',
-      color:'black',
-      width:1080,
-      height:"100%",
+  root: {
+    width: '100%',
+    marginTop:'1px',
+    backgroundColor: theme.palette.background.paper,
+    position: 'relative',
+    overflow: 'auto',
+    maxHeight: "1080px",
+    marginLeft:"-2rem",
   },
+
   paper: {
     ...theme.mixins.gutters(),
     paddingTop: theme.spacing.unit * 2,
     paddingBottom: theme.spacing.unit * 2,
+  },
+  optionDiv:{
+    display:"flex",
+    marginLeft:'auto',
+    marginRight:"1rem",
+
+    marginBottom:"1rem",
+    marginTop:"auto",
+  },
+  cover: {
+    width: 130,
+    marginTop:1,
+    marginBottom:1,
+  },
+  details: {
+    display: 'flex',
+    // flexDirection: 'column',
+  },
+  content: {
+    flex: '1 0 auto',
+  },
+  listcard: {
+    display: 'flex',
+    maxHeight: 90,
+    minHeight: 90,
   },
   });
   
@@ -83,16 +110,60 @@ const Dialogstyles = theme =>({
       const {thisOrder} = this.props;
 
       const orderDetail = <div><Card className={classes.paper} elevation={1}>
-      <Typography variant="h5" component="h2">
-        商品名称：
+      <Typography style={{fontSize:"larger"}}>
+        当前顾客：{thisOrder.customer_name}
       </Typography>
-      <Typography variant="h6" component="h6">
-        所属店面：
+      <Typography style={{fontSize:"larger"}}>
+        顾客ID：{thisOrder.customer_id}
       </Typography>
-      <Typography variant="h6" component="h6">
+      <Typography style={{fontSize:"larger"}}>
+        所属店面：{thisOrder.shop_name}
+      </Typography>
+      <Typography style={{fontSize:"larger"}}>
+        店面ID：{thisOrder.shop_id}
+      </Typography>
+      <Typography style={{fontSize:"larger"}}>
+        日期：{thisOrder.date}
+      </Typography>
+      <Typography style={{fontSize:"larger"}}>
+        总价：{thisOrder.total_price}元
+      </Typography>
+      <Typography style={{fontSize:"larger"}}>
+        备注：{thisOrder.note}
+      </Typography>
+      <Typography style={{fontSize:"larger"}}>
         商品列表：
       </Typography>
-      <CommodityList data={fakeInventory}/>
+      <List className={classes.root} subheader={<li />}>
+      {
+        <li key={`section-${thisOrder.shop_id}`} className={classes.listSection}>
+          <ul className={classes.ul}>
+            
+            {thisOrder.list.map(item => (
+              <Card className={classes.listcard} key={item.commodity_id}>
+              <CardMedia
+              className={classes.cover}
+              image={item.commodity_pic}
+              title="漂亮的水果"
+            /><div className={classes.details}>
+            <CardContent className={classes.content}>
+              <Typography>
+                {item.commodity_name}
+              </Typography>
+              <div style={{fontSize:'smaller', overflow:'hidden', textOverflow:'ellipsis', width:'40rem'}}>
+              买了<Typography color ="secondary" inline>{item.quantity}</Typography>{item.unit}, 合计<Typography color ="secondary" inline>{item.price}</Typography>元。
+              </div>
+
+
+            </CardContent>
+            
+          </div>
+          <div className={classes.optionDiv}><PageCommidityDetailM buttonName={'详情'} itemId={item.commodity_id}/></div> </Card>
+            ))}
+          </ul>
+        </li>
+      }
+    </List>
       </Card></div>
       
       const deliveryDetail =<div><Card className={classes.paper} elevation={1}>
