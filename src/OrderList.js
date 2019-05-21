@@ -129,20 +129,24 @@ constructor(){
 }
 
  getPage(num){
-  fetch('/getmovies/'+num, {
+  fetch('/getorderlistby'+this.props.type+'/'+num, {
     method: "GET",
     headers: new Headers({
-      "UserId":"admin",
+      "UserId":localStorage.getItem("userId"),
       "Username":"admin",
       "Date":'date',
+      "context":localStorage.getItem("userId")
   })
   }).then(response => {
     let jsonData=response.json();
     return jsonData;
   }).then(
+    // jsons=>{
+    //   this.state.rows=jsons;
+    //   this.setState({rows:jsons},()=>this.setState({onquery:false}))
+    // }
     jsons=>{
-      this.state.rows=jsons;
-      this.setState({rows:jsons},()=>this.setState({onquery:false}))
+      console.log(jsons)
     }
   ).catch(err => {
     console.error(`Request failed. Url = '/getmovies' . Message = ${err}`);

@@ -2,17 +2,22 @@
     {
         "id": 12345,
         "name":"大苹果",
-        "shop_id": 996145,
-        "shop_detail":"五角场分店，在复旦大学。。。隔壁的同济大学对面。",
+        "shopId": 996145,
+        "shopDetail":"五角场分店，在复旦大学。。。隔壁的同济大学对面。",
         "price": 9.9,
         "unit":"g",
-        "type": "新鲜水果",
+        "type": 1,
         "tag": [
             "tag1"
             ,
             "tag2"
         ],
         "inventory": 9999,
-        "resource": {"pic_url":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec", "detail_pic_url":"", "detail":"这将会是你一眼就爱上的苹果。（省略1000字）"
+        "resource": {"head":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec", "detail_pic_url":"", "detail":"这将会是你一眼就爱上的苹果。（省略1000字）"
+        },
+        "place":"烟台",
+        "createTime":"1999年23月32日",
+        "updateTime":"29013年3278月1日",
+        "resourceDetails": {"head":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec", "detail_pic_url":"", "detail":"这将会是你一眼就爱上的苹果。（省略1000字）"
         }
     }

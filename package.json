@@ -1,6 +1,7 @@
 {
   "name": "fresh-delivery",
   "version": "0.1.0",
+  "proxy":"http://localhost:8391",
   "private": true,
   "dependencies": {
     "@babel/polyfill": "^7.4.3",

@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import Slide from '@material-ui/core/Slide';
 import { Card, Tabs,Tab, TextField } from '@material-ui/core';
-import { getData, postJSON } from './utils/request';
+import { getData, postForm } from './utils/request';
 
 const styles = {
   appBar: {
@@ -95,27 +95,23 @@ class PageLogin extends React.Component {
       alert("用户名或密码不能为空！");
       return;
     }
-    const params = {
-      username,
-      password,
-      remember
-    };
-    postJSON('/login', params).then(data => {
-      if (data.error) {
-        alert(data.error.message || "login failed");
+    const params =`username=${username}&password=${password}&role=${this.props.buttonName==="我是顾客"?"ROLE_CUSTOMER":"ROLE_MERCHANT"}`
+    
+   
+    postForm('/login', params).then(data => {
+      if (data.code!=="200") {
+        alert(data.message || "login failed");
       } else {
         // 保存登录信息到sessionStorage
-        localStorage.setItem("userid", data.userId);
-        localStorage.setItem("username", username);
+        localStorage.setItem("userid", data.merchant.id);
+        localStorage.setItem("username", data.merchant.username);
         localStorage.setItem("iconURL",data.iconURL);
-        sessionStorage.setItem("userid", data.userId);
-        sessionStorage.setItem("username", username);
-        sessionStorage.setItem("iconURL",data.iconURL);
         
-        alert(data.error.message || "login successful");
-      }
+        alert("login successful");
         const ltype = this.props.buttonName.substring(2,4)
-       window.location.href='/'+(ltype==="顾客"?"c":"m");
+        window.location.href='/'+(ltype==="顾客"?"c":"m");
+      }
+        
   })
   }
 

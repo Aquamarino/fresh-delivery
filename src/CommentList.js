@@ -33,19 +33,19 @@ function CommentList(props) {
   const {listData} = props;
   return (
     <List className={classes.root}>
-      {listData.map(item=>(<ListItem alignItems="flex-start" component={Card} key={item.customer_id}> 
+      {listData.map(item=>(<ListItem alignItems="flex-start" component={Card} key={item.customerId}> 
         <ListItemAvatar>
             
-          <Avatar alt="Remy Sharp" src={item.customer_pic_url} component={Link} to={'/m'}/>
+          <Avatar alt="Remy Sharp" src={item.customerIconHead} component={Link} to={'/m'}/>
           
         </ListItemAvatar>
         <ListItemText
-          primary={<Typography component="span" className={classes.inline} color="textPrimary"  fontSize="smaller">{item.customer_name}</Typography>}
+          primary={<Typography component="span" className={classes.inline} color="textPrimary"  fontSize="smaller">{item.customerName}</Typography>}
           secondary={
             <React.Fragment >
-            <Typography component="span" className={classes.inline} color="textSecondary" fontSize="smaller">{item.date} </Typography>
+            <Typography component="span" className={classes.inline} color="textSecondary" fontSize="smaller">{item.createTime} </Typography>
               <Typography component="span" className={classes.inline} color="textPrimary"  fontSize="smaller">
-                {item.detail}
+                {item.comment}
               </Typography>
               
             </React.Fragment>
@@ -53,7 +53,7 @@ function CommentList(props) {
           className={classes.inline}
         />
          <ListItemSecondaryAction>
-        <ReactRating emptySymbol={<EmptyStar color="disabled"/>} fullSymbol={<StarIcon color="secondary"/>} initialRating={item.rating} readonly/>
+        <ReactRating emptySymbol={<EmptyStar color="disabled"/>} fullSymbol={<StarIcon color="secondary"/>} initialRating={item.rate} readonly/>
         </ListItemSecondaryAction>
       </ListItem>))}
       

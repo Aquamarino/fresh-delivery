@@ -3,7 +3,7 @@
     "shop_name":"商店1",
     "value":[
     {
-    "commodity_id": 12346,
+    "commodity_id": 1,
     "pic_url":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec",
     "description":"",
     "quantity": 100,
@@ -11,7 +11,7 @@
     "commodity_name":"菠萝"
     },
     {
-        "commodity_id": 12347,
+        "commodity_id": 2,
         "quantity": 100,
         "pic_url":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec",
         "description":"商品2详情",
@@ -25,7 +25,7 @@
     "shop_name":"商店2",
     "value":[
     {
-    "commodity_id": 12348,
+    "commodity_id": 3,
     "quantity": 100,
     "pic_url":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec",
     "description":"商品3详情",

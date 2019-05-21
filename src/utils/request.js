@@ -27,11 +27,11 @@ function getHeader(){
       "X-APICloud-AppId": AppId,
       "X-APICloud-AppKey": secureAppKey,
       "Accept": "application/json",
-      "Content-Type": "application/json"
+      "Content-Type": "application/x-www-form-urlencoded"
   });
 }
 
-function getData(url, present){
+function getData(url, present=null){
 
   let id=sessionStorage.getItem('userId');
   if(id===undefined){id="114514";}
@@ -41,6 +41,7 @@ function getData(url, present){
 
   return fetch(url, {
     method: "GET",
+    mode:"cors",
     headers: new Headers({
       "UserId":id,
       "Username":name,
@@ -69,6 +70,7 @@ function postData(url, data) {
   let date=Date.now;
   return fetch(url, {
     method: "POST",
+    mode:"cors",
     headers: new Headers({
       "UserId":id,
       "Username":name,
@@ -76,6 +78,7 @@ function postData(url, data) {
       "X-APICloud-AppId": AppId,
       "X-APICloud-AppKey": secureAppKey,
       "Accept": "application/json",
+      "Content-Type":"application/x-www-form-urlencoded"
   }),
     body: data
   }).then(response => {
@@ -87,11 +90,12 @@ function postData(url, data) {
 }
 
 
-function postJSON(url, data) {
+function postForm(url, data) {
   return fetch(url, {
     method: "POST",
+    mode:"cors",
     headers: getHeader(),
-    body: JSON.stringify(data)
+    body: data
   }).then(response => {
     return handleResponse(url, response);
   }).catch(err => {
@@ -108,6 +112,7 @@ function postPic(url, data) {
   let date=Date.now;
   return fetch(url, {
     method: "POST",
+    mode:"cors",
     headers: new Headers({
       "UserId":id,
       "Username":name,
@@ -126,4 +131,4 @@ function postPic(url, data) {
 }
 
 
-export {postData, postPic, postJSON, getData}
+export {postData, postPic, postForm, getData}

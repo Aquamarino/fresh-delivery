@@ -114,12 +114,13 @@ class PageCommodityDetailM extends React.Component {
 
   handleRequest = () =>{
     
-    getData('/getcommodity',this.props.itemId).then(data => {
-      if (data.error) {
-        alert(data.error.message || "");
+    getData(`/commodity/findById?id=${this.props.itemId}`).then(data => {
+      if (data.code!=="200") {
+        alert(data.message || "request failed");
       } else {
-        console.log(data)
-        this.setState({CommodityData:data});
+        console.log(data.commodity.commodity)
+        data.commodity.commodity.shopDetail=data.commodity.merchant.shopAddress;
+        this.setState({CommodityData:data.commodity.commodity});
       }
   })
   }
@@ -142,17 +143,22 @@ class PageCommodityDetailM extends React.Component {
           
           </ListItem>
           <ListItem>商品价格：{CommodityData.price+" 元 / "+CommodityData.unit+" "}</ListItem>
-          <ListItem>所属商店：{CommodityData.shop_detail}</ListItem>
+          <ListItem>所属商店：{CommodityData.shopDetail}</ListItem>
           <ListItem>商品库存：{CommodityData.inventory+" "+CommodityData.unit+" "}</ListItem>
-          <ListItem>商品描述：{CommodityData.resource.detail}</ListItem>
+          <ListItem>商品描述：{CommodityData.resourceDetails.head}</ListItem>
+          <ListItem>产地：{CommodityData.place}</ListItem>
+          <ListItem>上架时间：{CommodityData.createTime}</ListItem>
+          <ListItem>修改时间：{CommodityData.updateTime}</ListItem>
           <ListItem>商品类型：{CommodityData.type===0?"新鲜水果":CommodityData.type===1?"水果篮子":CommodityData.type===2?"加工水果":CommodityData.type}</ListItem>
-          <ListItem>商品标签：{CommodityData.tag.map(data => {
-          return (
-        <Chip
-              key={data}
-              label={data}
-              className={classes.chip}
-            />)})}</ListItem>
+          <ListItem>商品标签：{CommodityData.tag
+        //   .map(data => {
+        //   return (
+        // <Chip
+        //       key={data}
+        //       label={data}
+        //       className={classes.chip}
+        //     />)})
+            }</ListItem>
         
         </List>
         </Card>
