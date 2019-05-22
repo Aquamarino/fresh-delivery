@@ -81,20 +81,20 @@ function CardItem(props) {
     <div>
     
     <List className={classes.root} subheader={<li />}>
-      {data.map(shop => (
-        <li key={`section-${shop.shop_id}`} className={classes.listSection}>
+      {
+        <li key={`section-${data.shopId}`} className={classes.listSection}>
           <ul className={classes.ul}>
-            <ListSubheader>{`${shop.shop_name}`}</ListSubheader>
-            {shop.value.map(item => (
-              <Card className={classes.card} key={item.commodity_id}>
+            <ListSubheader>{`${data.shopName}`}</ListSubheader>
+            {data.value.map(item => (
+              <Card className={classes.card} key={item.commodityId}>
               <CardMedia
               className={classes.cover}
-              image={item.pic_url}
+              image={item.picUrl}
               title="漂亮的水果"
             /><div className={classes.details}>
             <CardContent className={classes.content}>
               <Typography>
-                {item.commodity_name}
+                {item.commodityName}
               </Typography>
               <Typography color="textSecondary" style={{fontSize:'smaller', overflow:'hidden', textOverflow:'ellipsis', width:'40rem'}}>
               {item.description}
@@ -104,11 +104,11 @@ function CardItem(props) {
             </CardContent>
             
           </div>
-          <div className={classes.optionDiv}><PageCommidityDetailM buttonName={'详情'} itemId={item.commodity_id} tab="inventory"/></div> </Card>
+          <div className={classes.optionDiv}><PageCommidityDetailM buttonName={'详情'} itemId={item.commodityId} tab="inventory"/></div> </Card>
             ))}
           </ul>
         </li>
-      ))}
+      }
     </List>
     </div>
   );

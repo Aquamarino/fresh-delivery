@@ -106,7 +106,7 @@ class PageLogin extends React.Component {
         localStorage.setItem("userid", data.merchant.id);
         localStorage.setItem("username", data.merchant.username);
         localStorage.setItem("iconURL",data.iconURL);
-        
+        localStorage.setItem("token",data.X_Auth_Token)
         alert("login successful");
         const ltype = this.props.buttonName.substring(2,4)
         window.location.href='/'+(ltype==="顾客"?"c":"m");

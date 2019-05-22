@@ -1,35 +1,35 @@
 [
     {
-        "order_id": 234567,
-        "customer_id": 234567,
-        "customer_name":"杰克",
+        "orderId": 234567,
+        "customerId": 234567,
+        "customerName":"杰克",
         "status":"已付款",
         "date":"9102年",
-        "shop_id": 765432,
-        "shop_name":"大连路分店",
-        "total_price": 50.0,
-        "pay_method":"蚂蚁花呗",
+        "shopId": 765432,
+        "shopName":"大连路分店",
+        "totalPrice": 50.0,
+        "payMethod":"蚂蚁花呗",
         "discount":"满50减10",
         "delivery":"韵达快递",
-        "delivery_id":"139437284",
+        "deliveryId":"139437284",
         "note":"要肉不要香菜。",
         "list":[
             {
                 
-                "commodity_id": 12346,
-                "commodity_name":"社会主义大菠萝",
-                "commodity_type":"新鲜水果",
-                "commodity_pic":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec",
+                "commodityId": 12346,
+                "commodityName":"社会主义大菠萝",
+                "commodityType":"新鲜水果",
+                "commodityPic":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec",
                 "quantity":3,
                 "price":4.99,
                 "unit":"斤"
             },
             {
                 
-                "commodity_id": 1234326,
-                "commodity_name":"社会主义大菠萝花篮",
-                "commodity_type":"水果篮子",
-                "commodity_pic":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec",
+                "commodityId": 1234326,
+                "commodityName":"社会主义大菠萝花篮",
+                "commodityType":"水果篮子",
+                "commodityPic":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec",
                 "quantity":1,
                 "price":17.00,
                 "unit":"篮"

@@ -50,7 +50,7 @@ const styles = {
           </Typography>
           <br/>
         <SearchBar/>
-        <OrderList type="merchant"/>
+        <OrderList type="merchant" thisId={0}/>
         </CardContent>
       </Card>
       </div>

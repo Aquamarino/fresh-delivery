@@ -10,11 +10,11 @@
     },
     {
         "customerId":16527643,
-        "customer_name":"匿名用户123",
-        "customer_pic_url":"https://s3.amazonaws.com/duolingo-stories-prod/image/0725dbee4aa3b9ea5fd038add4e6f63162dfbd87.svg",
-        "rating":4,
-        "detail":"我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊",
-        "date":"9102/12/12",
-        "commodity_id":1212123
+        "customerName":"匿名用户233",
+        "customerIconHead":"https://s3.amazonaws.com/duolingo-stories-prod/image/0725dbee4aa3b9ea5fd038add4e6f63162dfbd87.svg",
+        "rate":4,
+        "comment":"我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊",
+        "createTime":"9102/12/12",
+        "id":1212123
     }
 ]

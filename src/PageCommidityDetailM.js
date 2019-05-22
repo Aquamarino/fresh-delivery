@@ -114,7 +114,7 @@ class PageCommodityDetailM extends React.Component {
 
   handleRequest = () =>{
     
-    getData(`/commodity/findById?id=${this.props.itemId}`).then(data => {
+    getData(`/getcommodity/findById?id=${this.props.itemId}`).then(data => {
       if (data.code!=="200") {
         alert(data.message || "request failed");
       } else {
@@ -123,6 +123,16 @@ class PageCommodityDetailM extends React.Component {
         this.setState({CommodityData:data.commodity.commodity});
       }
   })
+
+  getData(`/getcommoditycomments/findById?id=${this.props.itemId}`).then(data => {
+    if (data.code!=="200") {
+      alert(data.message || "request failed");
+    } else {
+      // console.log(data.commodity.commodity)
+      // data.commodity.commodity.shopDetail=data.commodity.merchant.shopAddress;
+      // this.setState({CommodityData:data.commodity.commodity});
+    }
+})
   }
 
   componentDidMount(){
@@ -165,7 +175,7 @@ class PageCommodityDetailM extends React.Component {
     </div>
 
     const orderDetail = <div>
-    <OrderList type="normal"/>
+    <OrderList type="commodity" thisId={CommodityData.id}/>
 </div>
 
     const saleDetail = <div>
