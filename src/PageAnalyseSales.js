@@ -61,19 +61,23 @@ const styles = {
       营业额
       </Card>
       <br/>
-      水果总销量——过去一周
+      水果销量
       <Card className={classes.card}>
         <CardContent>
           <SalesChart salesdata={SalesData}/>
         </CardContent>
       </Card>
       <br/>
-      水果总销量——过去一周
+      水果日销量变化
       <Card className={classes.card}>
         <CardContent>
-          <OrderList />
+          <SalesChart salesdata={SalesData}/>
         </CardContent>
       </Card>
+      <br/>
+      水果销量——过去一周
+      <OrderList />
+      <br/>
       
     </div>
 
