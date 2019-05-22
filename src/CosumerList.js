@@ -155,7 +155,7 @@ class CardItem extends React.Component {
 CardItem.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired,
-  type: PropTypes.string.isRequired,
+ 
 };
 
 export default withStyles(styles, { withTheme: true })(CardItem);
