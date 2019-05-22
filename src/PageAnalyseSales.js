@@ -22,6 +22,7 @@ import Tab from '@material-ui/core/Tab';
 import OrderList from './OrderList';
 import CardItem from './CommodityList';
 import fakeInventory from './DataModels/Inventory'
+import CommodityChart from "./CommodityChart";
 
 const styles = {
     card: {
@@ -53,6 +54,19 @@ const styles = {
     };
 
     render() {
+    var salesdata2 = [];
+    var precount =  0;
+    var nowcount = 0;
+    SalesData.map((data, index) => {
+      nowcount = data.count;
+      if (index == 0) {
+        salesdata2.push({time: data.time, count: 0});
+      } else {
+        salesdata2.push({time: data.time, count: nowcount * 100 / precount});
+      }
+      precount = nowcount;
+
+    })
     const { classes } = this.props;
     const bull = <span className={classes.bullet}>•</span>;
 
@@ -61,7 +75,7 @@ const styles = {
       营业额
       </Card>
       <br/>
-      水果销量
+      水果总销量
       <Card className={classes.card}>
         <CardContent>
           <SalesChart salesdata={SalesData}/>
@@ -71,7 +85,7 @@ const styles = {
       水果日销量变化
       <Card className={classes.card}>
         <CardContent>
-          <SalesChart salesdata={SalesData}/>
+          <SalesChart salesdata={salesdata2}/>
         </CardContent>
       </Card>
       <br/>
@@ -80,7 +94,8 @@ const styles = {
     </div>
 
     const ratingDetail = <div><Card className={classes.paper} elevation={1}>
-    总利润——过去一周
+    重点水果销量——过去一周
+      <CardContent><CommodityChart/></CardContent>
     </Card></div>
 
     const inventoryDetail = <div><Card className={classes.paper} elevation={1}>
@@ -112,7 +127,7 @@ const styles = {
             
           >
             <Tab label="周销量" value="sales"/>
-            <Tab label="周利润" value="ratings"/>
+            <Tab label="重点水果" value="ratings"/>
             <Tab label="需求" value='inventory'/>
           </Tabs>
           <CardContent>

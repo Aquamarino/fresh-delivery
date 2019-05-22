@@ -16,6 +16,7 @@ import PageCommidityDetailM from './PageCommidityDetailM';
 import Avatar from '@material-ui/core/Avatar';
 import Chip from '@material-ui/core/Chip';
 import Pagination from './Pagination';
+import PageCustomerDetail from './PageCustomerDetail';
 
 const styles = theme => ({
   card: {
@@ -140,7 +141,7 @@ class CardItem extends React.Component {
               </CardContent>
               
             </div>
-            <div className={classes.optionDiv}><PageCommidityDetailM buttonName={'详情'} cusmuerId={cusmuer.id}/></div> </Card>
+            <div className={classes.optionDiv}><PageCustomerDetail buttonName={'详情'} cusmuerId={cusmuer.id}/></div> </Card>
 
             </ul>
 
