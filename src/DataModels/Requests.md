@@ -161,10 +161,10 @@ response body =
 ]
 ```
 
-# 5商家获取近一周销售总量（不分水果）
+# 5商家获取近一周销售总量（不分水果）id是商家id time代表时间 count代表当天所有水果的销售量
 
 ```
-url=`/getsalesdata/`
+url=`/getsalesdata?id=${id}`
 method = GET
 request query如上
 
