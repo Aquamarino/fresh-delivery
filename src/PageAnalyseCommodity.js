@@ -12,7 +12,7 @@ import CommodityChart from "./CommodityChart";
 import Divider from '@material-ui/core/Divider';
 
 import MovieList from "./OrderList"
-import CardItem from './CommodityList';
+import CommodityList from './CommodityList';
 import fakeInventory from './DataModels/Inventory'
 
 const styles = {
@@ -54,7 +54,7 @@ const styles = {
           <Typography variant="h5" component="h5" >
             商品分析
           </Typography>
-          <CardItem data={fakeInventory}/>
+          <CommodityList data={fakeInventory} type="normal"/>
         </CardContent>
       </Card>
 

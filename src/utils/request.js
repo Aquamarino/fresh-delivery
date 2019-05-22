@@ -49,6 +49,7 @@ function getData(url, present=null){
       "X-APICloud-AppId": AppId,
       "X-APICloud-AppKey": secureAppKey,
       "context":present,
+      "X_Auth_Token":localStorage.getItem("token")
   }),
 
   }).then(response => {

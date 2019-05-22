@@ -1,37 +1,30 @@
-[{
-    "shop_id": 765432,
-    "shop_name":"商店1",
+{
+    "shopId": 765432,
+    "shopName":"商店1",
     "value":[
     {
-    "commodity_id": 1,
-    "pic_url":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec",
+    "commodityId": 1,
+    "picUrl":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec",
     "description":"",
     "quantity": 100,
     "price": 12.5,
-    "commodity_name":"菠萝"
+    "commodityName":"菠萝"
     },
     {
-        "commodity_id": 2,
+        "commodityId": 2,
         "quantity": 100,
-        "pic_url":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec",
+        "picUrl":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec",
         "description":"商品2详情",
         "price": 12.5,
-        "commodity_name":"草莓"
-        }
-    ]
-},
-{
-    "shop_id": 765433,
-    "shop_name":"商店2",
-    "value":[
+        "commodityName":"草莓"
+    },
     {
-    "commodity_id": 3,
+    "commodityId": 3,
     "quantity": 100,
-    "pic_url":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec",
+    "picUrl":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec",
     "description":"商品3详情",
     "price": 12.5,
-    "commodity_name":"苹果"
+    "commodityName":"苹果"
     }
     ]
 }
-]

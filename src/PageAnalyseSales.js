@@ -71,7 +71,7 @@ const styles = {
       水果总销量——过去一周
       <Card className={classes.card}>
         <CardContent>
-          <OrderList />
+          
         </CardContent>
       </Card>
       

@@ -129,25 +129,26 @@ constructor(){
 }
 
  getPage(num){
-  fetch('/getorderlistby'+this.props.type+'/'+num, {
+   
+  let queryUrl = this.props.type==="commodity"?
+   `/getcommodityorderlist?page=${num}&id=${this.props.thisId}`:'/getmerchantorderlist?page='+num;
+  
+
+  fetch(queryUrl, {
     method: "GET",
     headers: new Headers({
-      "UserId":localStorage.getItem("userId"),
-      "Username":"admin",
-      "Date":'date',
-      "context":localStorage.getItem("userId")
+      "X_Auth_Token":localStorage.getItem("token")
   })
   }).then(response => {
     let jsonData=response.json();
     return jsonData;
   }).then(
+    
     // jsons=>{
     //   this.state.rows=jsons;
-    //   this.setState({rows:jsons},()=>this.setState({onquery:false}))
+    //   // this.setState({rows:jsons},()=>this.setState({onquery:false}))
     // }
-    jsons=>{
-      console.log(jsons)
-    }
+    
   ).catch(err => {
     console.error(`Request failed. Url = '/getmovies' . Message = ${err}`);
     this.state.rows=fakeOrderList;
@@ -206,14 +207,14 @@ componentDidMount(){
           </TableHead>
             <TableBody>
               {rows.map(row => (
-                <TableRow key={row.order_id} hover={true}>
+                <TableRow key={row.orderId} hover={true}>
                 
                   <TableCell component="th" scope="row">
-                    {row.order_id} 
+                    {row.orderId} 
                   </TableCell>
-                  <TableCell align="right"><span>{row.list[0].commodity_name}</span>{row.list.length>1?<Typography component="span" color="textSecondary" fontSize="smaller">...共{row.list.length}件</Typography>:<div/>}</TableCell>
-                  <TableCell align="right">{row.shop_name}</TableCell>
-                  <TableCell align="right" >{row.total_price+"元"}</TableCell>
+                  <TableCell align="right"><span>{row.list[0].commodityName}</span>{row.list.length>1?<Typography component="span" color="textSecondary" fontSize="smaller">...共{row.list.length}件</Typography>:<div/>}</TableCell>
+                  <TableCell align="right">{row.shopName}</TableCell>
+                  <TableCell align="right" >{row.totalPrice+"元"}</TableCell>
                   <TableCell align="right" style={{width:"5rem"}}>
                   <PageOrderDetail thisOrder ={row}/>
                   </TableCell>
@@ -252,6 +253,7 @@ componentDidMount(){
 MovieList.propTypes = {
   classes: PropTypes.object.isRequired,
   type: PropTypes.string.isRequired,
+  thisId: PropTypes.number.isRequired,
 };
 
 export default withStyles(styles)(MovieList);

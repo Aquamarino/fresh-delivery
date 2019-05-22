@@ -89,9 +89,32 @@ const Dialogstyles = theme =>({
       open: false,
       thisOrder: null,
       value:"order",
+      thisDelivery:null,
     };
   
-
+    getDelivery(){
+      fetch('/getdelivery?id='+this.props.thisOrder.deliveryId, {
+        method: "GET",
+        headers: new Headers({
+          "X_Auth_Token":localStorage.getItem("token")
+      })
+      }).then(response => {
+        let jsonData=response.json();
+        return jsonData;
+      }).then(
+        
+        jsons=>{
+          this.state.thisDelivery=jsons;
+          // this.setState({rows:jsons},()=>this.setState({onquery:false}))
+        }
+        
+      ).catch(err => {
+        console.error(`Request failed. Url = '/getmovies' . Message = ${err}`);
+        // this.state.rows=fakeOrderList;
+        // this.setState({rows:fakeOrderList},()=>this.setState({onquery:false}))
+        return {error: {message: "Request failed."}};
+      })
+    }
 
     componentWillReceiveProps(nextProps){
         this.setState({thisOrder:nextProps.thisOrder,})
@@ -117,16 +140,16 @@ const Dialogstyles = theme =>({
 
       const orderDetail = <div><Card className={classes.paper} elevation={1}>
       <Typography style={{fontSize:"larger"}}>
-        当前顾客：{thisOrder.customer_name}
+        当前顾客：{thisOrder.customerName}
       </Typography>
       <Typography style={{fontSize:"larger"}}>
-        顾客ID：{thisOrder.customer_id}
+        顾客ID：{thisOrder.customerId}
       </Typography>
       <Typography style={{fontSize:"larger"}}>
-        所属店面：{thisOrder.shop_name}
+        所属店面：{thisOrder.shopName}
       </Typography>
       <Typography style={{fontSize:"larger"}}>
-        店面ID：{thisOrder.shop_id}
+        店面ID：{thisOrder.shopId}
       </Typography>
       <Typography style={{fontSize:"larger"}}>
         订单状态：{thisOrder.status}
@@ -135,19 +158,19 @@ const Dialogstyles = theme =>({
         日期：{thisOrder.date}
       </Typography>
       <Typography style={{fontSize:"larger"}}>
-        总价：{thisOrder.total_price}元
+        总价：{thisOrder.totalPrice}元
       </Typography>
       <Typography style={{fontSize:"larger"}}>
         快递：{thisOrder.delivery}
       </Typography>
       <Typography style={{fontSize:"larger"}}>
-        快递单号：{thisOrder.delivery_id}
+        快递单号：{thisOrder.deliveryId}
       </Typography>
       <Typography style={{fontSize:"larger"}}>
         优惠：{thisOrder.discount}
       </Typography>
       <Typography style={{fontSize:"larger"}}>
-        支付方式：{thisOrder.pay_method}
+        支付方式：{thisOrder.payMethod}
       </Typography>
       <Typography style={{fontSize:"larger"}}>
         备注：{thisOrder.note}
@@ -157,19 +180,19 @@ const Dialogstyles = theme =>({
       </Typography>
       <List className={classes.root} subheader={<li />}>
       {
-        <li key={`section-${thisOrder.shop_id}`} className={classes.listSection}>
+        <li key={`section-${thisOrder.shopId}`} className={classes.listSection}>
           <ul className={classes.ul}>
             
             {thisOrder.list.map(item => (
-              <Card className={classes.listcard} key={item.commodity_id}>
+              <Card className={classes.listcard} key={item.commodityId}>
               <CardMedia
               className={classes.cover}
-              image={item.commodity_pic}
+              image={item.commodityPic}
               title="漂亮的水果"
             /><div className={classes.details}>
             <CardContent className={classes.content}>
               <Typography>
-                {item.commodity_name}
+                {item.commodityName}
               </Typography>
               <div style={{fontSize:'smaller', overflow:'hidden', textOverflow:'ellipsis', width:'40rem'}}>
               买了<Typography color ="secondary" inline>{item.quantity}</Typography>{item.unit}, 合计<Typography color ="secondary" inline>{item.price}</Typography>元。
@@ -179,7 +202,7 @@ const Dialogstyles = theme =>({
             </CardContent>
             
           </div>
-          <div className={classes.optionDiv}><PageCommidityDetailM buttonName={'详情'} itemId={item.commodity_id}/></div> </Card>
+          <div className={classes.optionDiv}><PageCommidityDetailM buttonName={'详情'} itemId={item.commodityId}/></div> </Card>
             ))}
           </ul>
         </li>

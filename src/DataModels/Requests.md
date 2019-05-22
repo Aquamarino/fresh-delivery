@@ -1,165 +1,162 @@
-# 登陆
-```
-url = '/login'
-method = POST
-request body =     {
-      username: string,
-      password: string,
-      remember: bool
-    }
-response body =         {
-    userid: string,
-    username: string,
-    iconurl: string,
 
-}
-```
+# 之前的作废
 
-* response body type为JSON， 基本上JSON的键值返回string就行。
+# 1商家获取订单列表
 
-# 商家获取商品列表
 ```
-url = '/getcommoditylist'
+url=`/getmerchantorderlist?id=${id}&page=${page}`
 method = GET
-request header = {
-    context: string(merchant_id)
-}
-response body = 
-[{
-    "shop_id": 765432,
-    "shop_name":"商店1",
-    "value":[
-    {
-    "commodity_id": 12346,
-    "pic_url":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec",
-    "description":"商品1详情",
-    "quantity": 100,
-    "price": 12.5,
-    "commodity_name":"abc"
-    },
-    {
-        "commodity_id": 12347,
-        "quantity": 100,
-        "pic_url":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec",
-        "description":"商品2详情",
-        "price": 12.5,
-        "commodity_name":"abc"
-        }
-    ]
-},
-{
-    "shop_id": 765433,
-    "shop_name":"商店2",
-    "value":[
-    {
-    "commodity_id": 12348,
-    "quantity": 100,
-    "pic_url":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec",
-    "description":"商品3详情",
-    "price": 12.5,
-    "commodity_name":"abc"
-    }
-    ]
-}
-]
-
-```
-
-# 商家获取单个商品
-
-```
-url="/getcommodity"
-method = GET
-request header = {
-    context: string(commodity_id)
-}
-
-response body = 
-    {
-        "id": 12345,
-        "name":"apple",
-        "shop_id": 996145,
-        "shop_detail":"五角场分店，在复旦大学。。。隔壁的同济大学对面。",
-        "price": 9.9,
-        "unit":"g",
-        "type": 123,
-        "tag": [
-            "tag1"
-            ,
-            "tag2"
-        ],
-        "inventory": 9999,
-        "resource": 
-        {"pic_url":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec", "detail_pic_url":"", "detail":"这将会是你一眼就爱上的苹果。（省略1000字）"
-        }
-    }
-```
-
-# 商家获取曾经上架过的已下架商品
-
-```
-url="/getoldcommoditylist"
-method = GET
-request header = {
-    context: string(merchant_id)
-}
+request query如上
 
 response body = 
     [
     {
-        "id": 12345,
-        "name":"apple",
-        "shop_id": 996145,
-        "shop_detail":"五角场分店，在复旦大学。。。隔壁的同济大学对面。",
-        "price": 9.9,
-        "unit":"g",
-        "type": 123,
-        "tag": [
-            "tag1"
-            ,
-            "tag2"
-        ],
-        "inventory": 9999,
-        "resource": {"pic_url":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec", "detail_pic_url":"", "detail":"这将会是你一眼就爱上的苹果。（省略1000字）"
-        }
-    },
-    {
-        "id": 12346,
-        "name":"banana",
-        "shop_id": 996146,
-        "shop_detail":"五角场分店，在复旦大学。。。隔壁的同济大学对面。",
-        "price": 10.9,
-        "unit":"g",
-        "type": 122,
-        "tag": [
-            "tag3",
-            "tag4"
-        ],
-        "inventory": 9998,
-        "resource": {"pic_url":"https://images.unsplash.com/reserve/RNm0KceQ4Gbpb0xldOe7_DSC_0679_2.JPG", "detail_pic_url":"", "detail":"这将会是你一眼就爱上的香蕉。（省略1000字）"
-        }
+        "orderId": 234567,
+        "customerId": 234567,
+        "customerName":"杰克",
+        "status":"已付款",
+        "date":"9102年",
+        "shopId": 765432,
+        "shopName":"大连路分店",
+        "totalPrice": 50.0,
+        "payMethod":"蚂蚁花呗",
+        "discount":"满50减10",
+        "delivery":"韵达快递",
+        "deliveryId":"139437284",
+        "note":"要肉不要香菜。",
+        "list":[
+            {
+                
+                "commodityId": 12346,
+                "commodityName":"社会主义大菠萝",
+                "commodityType":"新鲜水果",
+                "commodityPic":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec",
+                "quantity":3,
+                "price":4.99,
+                "unit":"斤"
+            },
+            {
+                
+                "commodityId": 1234326,
+                "commodityName":"社会主义大菠萝花篮",
+                "commodityType":"水果篮子",
+                "commodityPic":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec",
+                "quantity":1,
+                "price":17.00,
+                "unit":"篮"
+            }
+        ]
     }
 ]
 ```
 
-# 商家获取指定商品的订单
+# 2商家通过快递单号获取快递详情
 
 ```
-url="/getorders"
+url=`/getdelivery?id=${id}`
 method = GET
-request header = {
-    context: string(commodity_id)
-}
+request query如上
 
 response body = 
-    [
-    待定
-    
-    ]
+   [
+    {
+        "date":"5/20 7:30 am",
+        "location":"上海",
+        "status":"运输中",
+        "description":"快件已经到达嘉定集散中心。等待派送。"
+    },
+    {
+        "date":"5/19 6:30 pm",
+        "location":"江苏",
+        "status":"运输中",
+        "description":"快件在花桥集散中心装车，等待发往：嘉定集散中心。"
+    },
+    {
+        "date":"5/18 6:30 pm",
+        "location":"江苏",
+        "status":"揽收中",
+        "description":"快件已揽收。"
+    }
+]
 ```
----
 
-2019.05.16
 
----
-* 注：commodity_type在数据库保存的是int但是希望后端处理一下，直接返回中文字符串到json body中。
+# 3商家通过商品ID获取订单详情
+
+```
+url=`/getcommodityorderlist?page=${num}&id=${CommodityId}`
+method = GET
+request query如上
+
+response body = 
+   [
+    {
+        "orderId": 234567,
+        "customerId": 234567,
+        "customerName":"杰克",
+        "status":"已付款",
+        "date":"9102年",
+        "shopId": 765432,
+        "shopName":"大连路分店",
+        "totalPrice": 50.0,
+        "payMethod":"蚂蚁花呗",
+        "discount":"满50减10",
+        "delivery":"韵达快递",
+        "deliveryId":"139437284",
+        "note":"要肉不要香菜。",
+        "list":[
+            {
+                
+                "commodityId": 12346,
+                "commodityName":"社会主义大菠萝",
+                "commodityType":"新鲜水果",
+                "commodityPic":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec",
+                "quantity":3,
+                "price":4.99,
+                "unit":"斤"
+            },
+            {
+                
+                "commodityId": 1234326,
+                "commodityName":"社会主义大菠萝花篮",
+                "commodityType":"水果篮子",
+                "commodityPic":"https://images.unsplash.com/photo-1512578659172-63a4634c05ec",
+                "quantity":1,
+                "price":17.00,
+                "unit":"篮"
+            }
+        ]
+    }
+]
+```
+
+
+# 4商家通过商品ID获取订单详情
+
+```
+url=`/getcommoditycomments/findById?id=${itemId}`
+method = GET
+request query如上
+
+response body = 
+   [
+    {
+        "customerId":1652768,
+        "customerName":"匿名用户123",
+        "customerIconHead":"https://s3.amazonaws.com/duolingo-stories-prod/image/0725dbee4aa3b9ea5fd038add4e6f63162dfbd87.svg",
+        "rate":3,
+        "comment":"我真的很喜欢这个妃子笑，好好吃。",
+        "createTime":"9102/12/12",
+        "id":1
+    },
+    {
+        "customerId":16527643,
+        "customerName":"匿名用户233",
+        "customerIconHead":"https://s3.amazonaws.com/duolingo-stories-prod/image/0725dbee4aa3b9ea5fd038add4e6f63162dfbd87.svg",
+        "rate":4,
+        "comment":"我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊",
+        "createTime":"9102/12/12",
+        "id":1212123
+    }
+]
+```
