@@ -76,8 +76,6 @@ const styles = {
       </Card>
       <br/>
       水果销量——过去一周
-      <OrderList />
-      <br/>
       
     </div>
 

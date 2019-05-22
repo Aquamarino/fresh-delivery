@@ -144,7 +144,7 @@ response body =
         "customerId":1652768,
         "customerName":"匿名用户123",
         "customerIconHead":"https://s3.amazonaws.com/duolingo-stories-prod/image/0725dbee4aa3b9ea5fd038add4e6f63162dfbd87.svg",
-        "rate":3,
+       "comment":"我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我   "rate":3,
         "comment":"我真的很喜欢这个妃子笑，好好吃。",
         "createTime":"9102/12/12",
         "id":1
@@ -154,9 +154,28 @@ response body =
         "customerName":"匿名用户233",
         "customerIconHead":"https://s3.amazonaws.com/duolingo-stories-prod/image/0725dbee4aa3b9ea5fd038add4e6f63162dfbd87.svg",
         "rate":4,
-        "comment":"我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊我不喜欢啊",
+      不喜欢啊我不喜欢啊",
         "createTime":"9102/12/12",
         "id":1212123
     }
+]
+```
+
+# 5商家获取近一周销售总量（不分水果）
+
+```
+url=`/getsalesdata/`
+method = GET
+request query如上
+
+response body = 
+   [
+    {"time": "2019-05-05", "count": 116},
+    {"time": "2019-05-06", "count": 129},
+    {"time": "2019-05-07", "count": 135},
+    {"time": "2019-05-08", "count": 86},
+    {"time": "2019-05-09", "count": 73},
+    {"time": "2019-05-10", "count": 85},
+    {"time": "2019-05-11", "count": 73}
 ]
 ```
